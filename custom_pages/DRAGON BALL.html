@@ -1,0 +1,640 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="弹球打砖块 - 第一关        :root {       --bg-top: #0a1629;       --bg-bottom: #11233f;       --panel: #1a3159;       --text: #e8f3ff;       --accent: #ffb347;       --brick-a: #ff6b6b;       --bri">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/custom_pages/DRAGON%20BALL.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="弹球打砖块 - 第一关        :root {       --bg-top: #0a1629;       --bg-bottom: #11233f;       --panel: #1a3159;       --text: #e8f3ff;       --accent: #ffb347;       --brick-a: #ff6b6b;       --bri">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-02-13T08:28:46.806Z">
+<meta property="article:modified_time" content="2026-02-13T08:28:46.806Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/custom_pages/DRAGON%20BALL.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>弹球打砖块 - 第一关</title>
+  <style>
+    :root {
+      --bg-top: #0a1629;
+      --bg-bottom: #11233f;
+      --panel: #1a3159;
+      --text: #e8f3ff;
+      --accent: #ffb347;
+      --brick-a: #ff6b6b;
+      --brick-b: #ffd166;
+      --brick-c: #06d6a0;
+      --brick-d: #4dabf7;
+      --paddle: #7bdff2;
+      --ball: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 20% 10%, #1f3c6d 0%, var(--bg-top) 45%, var(--bg-bottom) 100%);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      user-select: none;
+    }
+
+    .wrap {
+      width: min(94vw, 980px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--panel) 82%, #000 18%);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      letter-spacing: 0.3px;
+      font-size: 14px;
+    }
+
+    canvas {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: linear-gradient(180deg, #0d223f 0%, #0a1a30 100%);
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="hud">
+      <div id="status">状态：移动鼠标控制挡板，左键发球</div>
+      <div id="remain">剩余砖块：0</div>
+    </div>
+    <canvas id="game" width="960" height="540" aria-label="弹球打砖块第一关"></canvas>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const statusEl = document.getElementById("status");
+    const remainEl = document.getElementById("remain");
+
+    const W = canvas.width;
+    const H = canvas.height;
+
+    const paddle = {
+      width: 150,
+      height: 16,
+      x: W / 2 - 75,
+      y: H - 44,
+      speedFollow: 0.32
+    };
+
+    const levelConfig = {
+      rows: 6,
+      cols: 11,
+      brickW: 74,
+      brickH: 24,
+      gap: 8,
+      offsetTop: 52
+    };
+
+    const balls = [];
+    const bricks = [];
+    const explosions = [];
+
+    let running = false;
+    let won = false;
+    let lost = false;
+    let mouseX = W / 2;
+    let lastTime = performance.now();
+
+    const BRICK_COLORS = ["#ff6b6b", "#ffd166", "#06d6a0", "#4dabf7"];
+
+    function createBall(x, y, vx, vy) {
+      balls.push({
+        x,
+        y,
+        vx,
+        vy,
+        r: 8,
+        trail: []
+      });
+    }
+
+    function resetLevel() {
+      balls.length = 0;
+      bricks.length = 0;
+      explosions.length = 0;
+      running = false;
+      won = false;
+      lost = false;
+
+      const totalW = levelConfig.cols * levelConfig.brickW + (levelConfig.cols - 1) * levelConfig.gap;
+      const startX = (W - totalW) / 2;
+
+      for (let row = 0; row < levelConfig.rows; row += 1) {
+        for (let col = 0; col < levelConfig.cols; col += 1) {
+          bricks.push({
+            x: startX + col * (levelConfig.brickW + levelConfig.gap),
+            y: levelConfig.offsetTop + row * (levelConfig.brickH + levelConfig.gap),
+            w: levelConfig.brickW,
+            h: levelConfig.brickH,
+            alive: true,
+            color: BRICK_COLORS[row % BRICK_COLORS.length],
+            splitOnHit: row === 0 && col === 0
+          });
+        }
+      }
+
+      statusEl.textContent = "状态：移动鼠标控制挡板，左键发球";
+      updateRemainText();
+    }
+
+    function updateRemainText() {
+      const left = bricks.filter((b) => b.alive).length;
+      remainEl.textContent = `剩余砖块：${left}`;
+    }
+
+    function launchBall() {
+      if (running || won || lost) {
+        return;
+      }
+
+      createBall(
+        paddle.x + paddle.width / 2,
+        paddle.y - 10,
+        (Math.random() * 2 - 1) * 130,
+        -360
+      );
+      running = true;
+      statusEl.textContent = "状态：游戏进行中";
+    }
+
+    function restartAfterEnd() {
+      if (!won && !lost) {
+        return;
+      }
+      resetLevel();
+    }
+
+    function spawnExplosion(x, y, color) {
+      const particles = [];
+      for (let i = 0; i < 18; i += 1) {
+        const angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.35;
+        const speed = 60 + Math.random() * 180;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 0.42 + Math.random() * 0.25,
+          maxLife: 0.42 + Math.random() * 0.25,
+          size: 2 + Math.random() * 3.5,
+          color
+        });
+      }
+      explosions.push(...particles);
+    }
+
+    function resolveBallBrickCollision(ball, brick) {
+      const nearestX = Math.max(brick.x, Math.min(ball.x, brick.x + brick.w));
+      const nearestY = Math.max(brick.y, Math.min(ball.y, brick.y + brick.h));
+      const dx = ball.x - nearestX;
+      const dy = ball.y - nearestY;
+
+      if (dx * dx + dy * dy > ball.r * ball.r) {
+        return false;
+      }
+
+      const overlapLeft = ball.x + ball.r - brick.x;
+      const overlapRight = brick.x + brick.w - (ball.x - ball.r);
+      const overlapTop = ball.y + ball.r - brick.y;
+      const overlapBottom = brick.y + brick.h - (ball.y - ball.r);
+      const minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+      if (minOverlap === overlapLeft || minOverlap === overlapRight) {
+        ball.vx *= -1;
+      } else {
+        ball.vy *= -1;
+      }
+
+      brick.alive = false;
+      spawnExplosion(brick.x + brick.w / 2, brick.y + brick.h / 2, brick.color);
+
+      if (brick.splitOnHit) {
+        const speed = Math.hypot(ball.vx, ball.vy);
+        const baseAngle = Math.atan2(ball.vy, ball.vx);
+        const angleOffset = 0.42;
+        const newAngle = baseAngle + angleOffset;
+        createBall(ball.x, ball.y, Math.cos(newAngle) * speed, Math.sin(newAngle) * speed);
+      }
+
+      updateRemainText();
+      if (bricks.every((b) => !b.alive)) {
+        running = false;
+        won = true;
+        statusEl.textContent = "状态：胜利！已清空第一关，左键可重开";
+      }
+
+      return true;
+    }
+
+    function update(dt) {
+      const targetX = mouseX - paddle.width / 2;
+      paddle.x += (targetX - paddle.x) * paddle.speedFollow;
+      paddle.x = Math.max(0, Math.min(W - paddle.width, paddle.x));
+
+      if (running) {
+        for (let i = balls.length - 1; i >= 0; i -= 1) {
+          const ball = balls[i];
+          ball.x += ball.vx * dt;
+          ball.y += ball.vy * dt;
+
+          ball.trail.push({ x: ball.x, y: ball.y });
+          if (ball.trail.length > 8) {
+            ball.trail.shift();
+          }
+
+          if (ball.x - ball.r <= 0 && ball.vx < 0) {
+            ball.x = ball.r;
+            ball.vx *= -1;
+          }
+          if (ball.x + ball.r >= W && ball.vx > 0) {
+            ball.x = W - ball.r;
+            ball.vx *= -1;
+          }
+          if (ball.y - ball.r <= 0 && ball.vy < 0) {
+            ball.y = ball.r;
+            ball.vy *= -1;
+          }
+
+          if (
+            ball.x + ball.r >= paddle.x &&
+            ball.x - ball.r <= paddle.x + paddle.width &&
+            ball.y + ball.r >= paddle.y &&
+            ball.y - ball.r <= paddle.y + paddle.height &&
+            ball.vy > 0
+          ) {
+            ball.y = paddle.y - ball.r;
+            const hitPos = (ball.x - (paddle.x + paddle.width / 2)) / (paddle.width / 2);
+            const angle = hitPos * (Math.PI / 3.2);
+            const speed = Math.max(340, Math.hypot(ball.vx, ball.vy));
+            ball.vx = Math.sin(angle) * speed;
+            ball.vy = -Math.cos(angle) * speed;
+          }
+
+          for (const brick of bricks) {
+            if (!brick.alive) {
+              continue;
+            }
+            if (resolveBallBrickCollision(ball, brick)) {
+              break;
+            }
+          }
+
+          if (ball.y - ball.r > H + 40) {
+            balls.splice(i, 1);
+          }
+        }
+
+        if (balls.length === 0 && !won) {
+          running = false;
+          lost = true;
+          statusEl.textContent = "状态：失败，左键重新开始第一关";
+        }
+      }
+
+      for (let i = explosions.length - 1; i >= 0; i -= 1) {
+        const p = explosions[i];
+        p.life -= dt;
+        if (p.life <= 0) {
+          explosions.splice(i, 1);
+          continue;
+        }
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      const glow = ctx.createRadialGradient(W * 0.5, -40, 60, W * 0.5, H * 0.2, H * 0.9);
+      glow.addColorStop(0, "rgba(135, 206, 250, 0.18)");
+      glow.addColorStop(1, "rgba(20, 28, 52, 0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      for (const brick of bricks) {
+        if (!brick.alive) {
+          continue;
+        }
+        ctx.fillStyle = brick.color;
+        ctx.fillRect(brick.x, brick.y, brick.w, brick.h);
+
+        ctx.fillStyle = "rgba(255,255,255,0.18)";
+        ctx.fillRect(brick.x + 2, brick.y + 2, brick.w - 4, 6);
+
+        if (brick.splitOnHit) {
+          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(brick.x + 2, brick.y + 2, brick.w - 4, brick.h - 4);
+        }
+      }
+
+      for (const ball of balls) {
+        for (let i = 0; i < ball.trail.length; i += 1) {
+          const t = ball.trail[i];
+          const alpha = (i + 1) / ball.trail.length;
+          ctx.fillStyle = `rgba(255,255,255,${alpha * 0.18})`;
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, ball.r * (0.45 + alpha * 0.35), 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      for (const p of explosions) {
+        const alpha = p.life / p.maxLife;
+        ctx.fillStyle = hexToRgba(p.color, alpha);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * (0.65 + alpha), 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      const paddleGradient = ctx.createLinearGradient(paddle.x, paddle.y, paddle.x, paddle.y + paddle.height);
+      paddleGradient.addColorStop(0, "#c8f5ff");
+      paddleGradient.addColorStop(1, "#52d3ee");
+      ctx.fillStyle = paddleGradient;
+      ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+      ctx.fillStyle = "rgba(255,255,255,0.2)";
+      ctx.fillRect(paddle.x + 4, paddle.y + 2, paddle.width - 8, 4);
+
+      if (!running && !won && !lost) {
+        const previewX = paddle.x + paddle.width / 2;
+        const previewY = paddle.y - 10;
+        ctx.fillStyle = "rgba(255,255,255,0.9)";
+        ctx.beginPath();
+        ctx.arc(previewX, previewY, 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (won || lost) {
+        ctx.fillStyle = "rgba(3,8,20,0.58)";
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 52px Trebuchet MS";
+        ctx.fillText(won ? "YOU WIN" : "GAME OVER", W / 2, H / 2 - 14);
+        ctx.font = "22px Trebuchet MS";
+        ctx.fillText("左键点击重新开始第一关", W / 2, H / 2 + 34);
+      }
+    }
+
+    function hexToRgba(hex, alpha) {
+      const safeHex = hex.replace("#", "").trim();
+      const expanded = safeHex.length === 3
+        ? safeHex.split("").map((c) => c + c).join("")
+        : safeHex;
+      const num = Number.parseInt(expanded, 16);
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      return `rgba(${r}, ${g}, ${b}, ${Math.max(0, Math.min(1, alpha))})`;
+    }
+
+    function gameLoop(now) {
+      const dt = Math.min(0.033, (now - lastTime) / 1000);
+      lastTime = now;
+      update(dt);
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+
+    canvas.addEventListener("mousemove", (event) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = W / rect.width;
+      mouseX = (event.clientX - rect.left) * scaleX;
+    });
+
+    canvas.addEventListener("mousedown", (event) => {
+      if (event.button !== 0) {
+        return;
+      }
+      if (won || lost) {
+        restartAfterEnd();
+        return;
+      }
+      launchBall();
+    });
+
+    canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+
+    resetLevel();
+    requestAnimationFrame((t) => {
+      lastTime = t;
+      gameLoop(t);
+    });
+  </script>
+</body>
+</html>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/13/2026-02-13-dragon-ball-breakout/" title="DRAGON BALL 弹球打砖块">DRAGON BALL 弹球打砖块</a><time datetime="2026-02-13T08:30:00.000Z" title="Created 2026-02-13 16:30:00">2026-02-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/01/2026-01-01-multimodal-arena/" title="Multimodal Arena">Multimodal Arena</a><time datetime="2026-01-01T04:00:00.000Z" title="Created 2026-01-01 12:00:00">2026-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/30/2025-12-29-smol-analysis/" title="Smol News 商业分析报告 (2025-12-29)">Smol News 商业分析报告 (2025-12-29)</a><time datetime="2025-12-30T13:41:04.000Z" title="Created 2025-12-30 21:41:04">2025-12-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/hello-world/" title="Hello World">Hello World</a><time datetime="2025-12-29T13:23:22.000Z" title="Created 2025-12-29 21:23:22">2025-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/2025-12-29-life-compass/" title="Life Compass">Life Compass</a><time datetime="2025-12-29T11:00:00.000Z" title="Created 2025-12-29 19:00:00">2025-12-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E5%88%86%E6%9E%90/"><span class="card-category-list-name">每日分析</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">游戏</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/smol-ai/" style="font-size: 1.5em; color: #99a9bf">smol.ai</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">人生规划</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 1.1em; color: #999">多模态</a> <a href="/tags/%E4%BC%91%E9%97%B2%E6%B8%B8%E6%88%8F/" style="font-size: 1.1em; color: #999">休闲游戏</a> <a href="/tags/%E6%89%93%E7%A0%96%E5%9D%97/" style="font-size: 1.1em; color: #999">打砖块</a> <a href="/tags/%E8%87%AA%E6%88%91%E8%AF%84%E4%BC%B0/" style="font-size: 1.1em; color: #999">自我评估</a> <a href="/tags/%E5%A4%8D%E5%8F%A4%E6%B8%B8%E6%88%8F/" style="font-size: 1.5em; color: #99a9bf">复古游戏</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" style="font-size: 1.1em; color: #999">模型对比</a> <a href="/tags/AI/" style="font-size: 1.5em; color: #99a9bf">AI</a> <a href="/tags/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" style="font-size: 1.5em; color: #99a9bf">商业分析</a> <a href="/tags/%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98/" style="font-size: 1.5em; color: #99a9bf">坦克大战</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              January 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              December 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">8</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-13T08:29:42.143Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI 人生罗盘                        :root {             &#x2F;* DeepSeek 风格通常偏向深蓝&#x2F;黑，这里保持原本清爽的蓝色系，稍微调整 *&#x2F;             --primary-color: #4D6BFE;              --bg-color: #f8f9fa;             --ca">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/custom_pages/Life%20Compass.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AI 人生罗盘                        :root {             &#x2F;* DeepSeek 风格通常偏向深蓝&#x2F;黑，这里保持原本清爽的蓝色系，稍微调整 *&#x2F;             --primary-color: #4D6BFE;              --bg-color: #f8f9fa;             --ca">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-02-03T12:55:33.622Z">
+<meta property="article:modified_time" content="2026-02-03T12:55:33.622Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/custom_pages/Life%20Compass.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 人生罗盘</title>
+    <!-- 引入 Markdown 渲染库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            /* DeepSeek 风格通常偏向深蓝/黑，这里保持原本清爽的蓝色系，稍微调整 */
+            --primary-color: #4D6BFE; 
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #202124;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            color: #5f6368;
+            margin-bottom: 5px;
+        }
+        
+        .brand {
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5f6368;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 15px;
+            color: #3c4043;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234D6BFE%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right .7em top 50%;
+            background-size: .65em auto;
+        }
+
+        .range-wrap {
+            padding: 10px 0;
+        }
+        input[type=range] {
+            width: 100%;
+            accent-color: var(--primary-color);
+        }
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #4D6BFE, #6C85FE);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 4px 10px rgba(77, 107, 254, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: wait;
+        }
+
+        #result-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+
+        .markdown-body {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .markdown-body h2 { font-size: 18px; color: var(--primary-color); margin-top: 20px; }
+        .markdown-body strong { color: #202124; }
+        .markdown-body ul { padding-left: 20px; color: #4a4a4a; }
+        .markdown-body li { margin-bottom: 8px; }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>人生规划评估</h1>
+    <div class="brand">Life Compass</div>
+
+    <form id="deepseekForm">
+        <div class="form-grid">
+            <!-- 1. 基础信息 -->
+            <div>
+                <label>年龄阶段</label>
+                <select id="ageGroup">
+                    <option value="20-25岁 (探索期)">20-25岁 (探索期)</option>
+                    <option value="26-30岁 (冲刺期)">26-30岁 (冲刺期)</option>
+                    <option value="31-35岁 (压力期)" selected>31-35岁 (压力期)</option>
+                    <option value="36-45岁 (稳重期)">36-45岁 (稳重期)</option>
+                    <option value="46岁以上 (收获期)">46岁以上 (收获期)</option>
+                </select>
+            </div>
+            <div>
+                <label>学历背景</label>
+                <select id="education">
+                    <option value="高中及以下">高中及以下</option>
+                    <option value="大专">大专</option>
+                    <option value="本科" selected>本科</option>
+                    <option value="硕士/博士">硕士/博士</option>
+                </select>
+            </div>
+
+            <!-- 2. 资产与家庭 -->
+            <div>
+                <label>资产负债</label>
+                <select id="assets">
+                    <option value="无房无车无存款">无房无车，积蓄较少</option>
+                    <option value="有房贷/车贷，压力大" selected>有房/车贷，压力较大</option>
+                    <option value="有资产，负债可控">有资产，负债可控</option>
+                    <option value="财务自由/充裕">资产充裕/财务自由</option>
+                </select>
+            </div>
+            <div>
+                <label>家庭/情感状态</label>
+                <select id="status">
+                    <option value="单身">单身</option>
+                    <option value="恋爱中/已婚无孩">恋爱中/已婚无孩</option>
+                    <option value="已婚有孩 (抚育期)">已婚有孩 (抚育期)</option>
+                    <option value="离异/独居">离异/独居</option>
+                </select>
+            </div>
+
+            <!-- 3. 核心诉求 (全宽) -->
+            <div class="full-width">
+                <label>你目前最大的痛点是？</label>
+                <select id="pain">
+                    <option value="职业迷茫/晋升受阻">职业迷茫 / 收入瓶颈</option>
+                    <option value="家庭矛盾/情感空虚">家庭矛盾 / 情感孤独</option>
+                    <option value="身心疲惫/健康焦虑">身心疲惫 / 健康焦虑</option>
+                    <option value="财务压力/入不敷出">负债累累 / 财务压力</option>
+                    <option value="缺乏意义感/平庸">生活平淡 / 缺乏意义感</option>
+                    <option value="暂无">暂无</option>
+                </select>
+            </div>
+
+            <div class="full-width">
+                <label>你最渴望的人生愿景是？</label>
+                <select id="goal">
+                    <option value="事业有成/社会地位">事业有成 / 社会地位</option>
+                    <option value="财富自由/提前退休">财富自由 / 环游世界</option>
+                    <option value="家庭和睦/儿女成才">家庭和睦 / 岁月静好</option>
+                    <option value="自我实现/精神富足">自我实现 / 精神富足</option>
+                    <option value="暂无">暂无</option>
+                </select>
+            </div>
+
+            <!-- 4. 幸福感滑块 -->
+            <div class="full-width range-wrap">
+                <label>当前主观幸福指数 (1-10)</label>
+                <input type="range" id="happiness" min="1" max="10" value="6">
+                <div class="range-labels">
+                    <span>😫 痛苦</span>
+                    <span>😐 一般</span>
+                    <span>🤩 完美</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="callDeepSeek()">生成评估方案</button>
+    </form>
+
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p style="font-size: 14px; color: #666;">正在为您深度思考...</p>
+    </div>
+
+    <div id="result-area">
+        <div id="markdown-content" class="markdown-body"></div>
+    </div>
+</div>
+
+<script>
+
+    const API_URL = "https://vinstar1-github-io.onrender.com/api/chat";
+    
+    // ===========================================
+
+    async function callDeepSeek() {
+        // 1. 获取所有选项的值
+        const data = {
+            age: document.getElementById('ageGroup').value,
+            edu: document.getElementById('education').value,
+            assets: document.getElementById('assets').value,
+            status: document.getElementById('status').value,
+            pain: document.getElementById('pain').value,
+            goal: document.getElementById('goal').value,
+            happiness: document.getElementById('happiness').value
+        };
+
+        // 2. 校验 Key
+        //if (API_KEY === "在这里填入你的_DeepSeek_API_KEY" || API_KEY === "") {
+        //    alert("请在代码的第 163 行填入正确的 DeepSeek API Key！");
+        //    return;
+        //}
+
+        // 3. UI 状态切换
+        const btn = document.querySelector('.btn-submit');
+        const loader = document.getElementById('loader');
+        const resultArea = document.getElementById('result-area');
+        
+        btn.disabled = true;
+        loader.style.display = 'block';
+        resultArea.style.display = 'none';
+
+        // 4. 构建 System Prompt 和 User Prompt
+        const systemPrompt = `你是一位世界顶级的首席人生规划师，擅长用简洁、温暖且一针见血的语言提供建议。你的任务是根据用户画像，提供一份【人生规划评估报告】。请按Markdown格式输出：
+        1. **🧭 现状诊断**：用3个关键词定义用户处境，并简述原因。
+        2. **🪜 破局三策**：针对痛点和愿景，给出上、中、下三条具体建议。
+        3. **🔮 5年推演**：不改变会怎样？改变了会怎样？
+        4. **💌 能量寄语**：一句直击人心的话。`;
+
+        const userPrompt = `
+        用户画像：
+        - 阶段：${data.age}，学历为${data.edu}。
+        - 现状：${data.status}，资产状况为“${data.assets}”。
+        - 幸福感自评：${data.happiness}/10。
+        - 最大痛点：${data.pain}。
+        - 终极愿景：${data.goal}。
+        `;
+
+        // 5. 调用 DeepSeek API
+        try {
+            // 请求我们自己的后端
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 注意：这里不需要 Authorization 头了，Key 在后端加
+                },
+                body: JSON.stringify({
+                    model: "deepseek-chat",
+                    messages: [
+                        { role: "system", content: systemPrompt },
+                        { role: "user", content: userPrompt }
+                    ],
+                    stream: false
+                })
+            });
+
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.error?.message || 'API 请求失败');
+            }
+
+            const json = await response.json();
+            
+            // 解析 DeepSeek (OpenAI Compatible) 的返回结构
+            const aiText = json.choices[0].message.content;
+
+            // 6. 渲染结果
+            document.getElementById('markdown-content').innerHTML = marked.parse(aiText);
+            resultArea.style.display = 'block';
+            
+            // 滚动到底部
+            resultArea.scrollIntoView({ behavior: 'smooth' });
+
+        } catch (error) {
+            alert("发生错误：" + error.message);
+            console.error(error);
+        } finally {
+            btn.disabled = false;
+            loader.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
+
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/13/2026-02-13-dragon-ball-breakout/" title="DRAGON BALL 弹球打砖块">DRAGON BALL 弹球打砖块</a><time datetime="2026-02-13T08:30:00.000Z" title="Created 2026-02-13 16:30:00">2026-02-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/01/2026-01-01-multimodal-arena/" title="Multimodal Arena">Multimodal Arena</a><time datetime="2026-01-01T04:00:00.000Z" title="Created 2026-01-01 12:00:00">2026-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/30/2025-12-29-smol-analysis/" title="Smol News 商业分析报告 (2025-12-29)">Smol News 商业分析报告 (2025-12-29)</a><time datetime="2025-12-30T13:41:04.000Z" title="Created 2025-12-30 21:41:04">2025-12-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/hello-world/" title="Hello World">Hello World</a><time datetime="2025-12-29T13:23:22.000Z" title="Created 2025-12-29 21:23:22">2025-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/2025-12-29-life-compass/" title="Life Compass">Life Compass</a><time datetime="2025-12-29T11:00:00.000Z" title="Created 2025-12-29 19:00:00">2025-12-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E5%88%86%E6%9E%90/"><span class="card-category-list-name">每日分析</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">游戏</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/smol-ai/" style="font-size: 1.5em; color: #99a9bf">smol.ai</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">人生规划</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 1.1em; color: #999">多模态</a> <a href="/tags/%E4%BC%91%E9%97%B2%E6%B8%B8%E6%88%8F/" style="font-size: 1.1em; color: #999">休闲游戏</a> <a href="/tags/%E6%89%93%E7%A0%96%E5%9D%97/" style="font-size: 1.1em; color: #999">打砖块</a> <a href="/tags/%E8%87%AA%E6%88%91%E8%AF%84%E4%BC%B0/" style="font-size: 1.1em; color: #999">自我评估</a> <a href="/tags/%E5%A4%8D%E5%8F%A4%E6%B8%B8%E6%88%8F/" style="font-size: 1.5em; color: #99a9bf">复古游戏</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" style="font-size: 1.1em; color: #999">模型对比</a> <a href="/tags/AI/" style="font-size: 1.5em; color: #99a9bf">AI</a> <a href="/tags/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" style="font-size: 1.5em; color: #99a9bf">商业分析</a> <a href="/tags/%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98/" style="font-size: 1.5em; color: #99a9bf">坦克大战</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              January 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              December 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">8</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-13T08:29:42.143Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

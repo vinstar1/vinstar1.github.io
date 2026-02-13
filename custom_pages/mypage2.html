@@ -1,0 +1,732 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="经典坦克大战 (修复版)              body {             background-color: #333;             display: flex;             justify-content: center;             align-items: center;             height: 10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/custom_pages/mypage2.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="经典坦克大战 (修复版)              body {             background-color: #333;             display: flex;             justify-content: center;             align-items: center;             height: 10">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-02-03T12:55:33.622Z">
+<meta property="article:modified_time" content="2026-02-03T12:55:33.622Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/custom_pages/mypage2.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>经典坦克大战 (修复版)</title>
+    <style>
+        body {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden; /* 防止滚动 */
+        }
+        #game-container {
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            border: 4px solid #555;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+            background-color: #000;
+        }
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+        .hidden { display: none !important; }
+        h1 { font-size: 40px; color: #b71e1e; text-shadow: 2px 2px #fff; margin: 0 0 20px 0; text-transform: uppercase; cursor: pointer;}
+        p { font-size: 18px; color: #fff; margin: 5px; cursor: pointer;}
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <canvas id="gameCanvas" width="416" height="416"></canvas>
+    <div id="ui-layer" onclick="startGameClick()">
+        <div id="start-screen">
+            <h1>BATTLE CITY</h1>
+            <p class="blink">PRESS SPACE TO START</p>
+            <p style="font-size: 12px; margin-top: 20px; color: #aaa;">(Click here or press SPACE)</p>
+            <p style="font-size: 12px; color: #aaa;">WASD / ARROWS to Move</p>
+        </div>
+        <div id="game-over-screen" class="hidden">
+            <h1>GAME OVER</h1>
+            <p class="blink">PRESS SPACE TO RESTART</p>
+        </div>
+        <div id="win-screen" class="hidden">
+            <h1>YOU WIN!</h1>
+            <p class="blink">PRESS SPACE TO RESTART</p>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * 经典坦克大战复刻版 - 修复移动Bug版
+ */
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// 游戏常量
+const TILE_SIZE = 16;
+const MAP_SIZE = 26;
+const SCREEN_SIZE = TILE_SIZE * MAP_SIZE; // 416
+const GAME_SPEED = 1000 / 60;
+
+const TYPE = { EMPTY: 0, BRICK: 1, STEEL: 2, BUSH: 3, WATER: 4, BASE: 9 };
+const DIR = { UP: 0, RIGHT: 1, DOWN: 2, LEFT: 3 };
+
+let gameState = 'START';
+let frameCount = 0;
+const keys = {};
+
+let walls = [];
+let water = [];
+let bushes = [];
+let base = null;
+let player = null;
+let enemies = [];
+let bullets = [];
+let explosions = [];
+
+// 地图数据 (修复了出生点附近的阻挡)
+// 0:空, 1:砖, 2:铁, 3:草, 4:水
+const LEVEL_1 = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,2,2,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,2,2,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,1,0,0,1,1,0,2,2,0,0,4,4,0,0,2,2,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,2,2,0,0,4,4,0,0,2,2,0,1,1,0,0,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,2,2,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,2,2,0],
+    [0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0],
+    [0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], // Row 23: Player can move here
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,9,1,0,0,0,0,0,0,0,0,0], // Row 24: Col 8,9 cleared for Player (Start x=128)
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,9,1,0,0,0,0,0,0,0,0,0]  // Row 25
+];
+
+class Rect {
+    constructor(x, y, w, h) {
+        this.x = x; this.y = y; this.w = w; this.h = h;
+    }
+    intersects(other) {
+        return this.x < other.x + other.w &&
+               this.x + this.w > other.x &&
+               this.y < other.y + other.h &&
+               this.y + this.h > other.y;
+    }
+}
+
+class Bullet extends Rect {
+    constructor(x, y, dir, owner) {
+        super(x + 6, y + 6, 4, 4);
+        this.dir = dir;
+        this.speed = 5; // 稍微加快子弹
+        this.owner = owner;
+        this.active = true;
+    }
+
+    update() {
+        if (!this.active) return;
+        switch(this.dir) {
+            case DIR.UP: this.y -= this.speed; break;
+            case DIR.DOWN: this.y += this.speed; break;
+            case DIR.LEFT: this.x -= this.speed; break;
+            case DIR.RIGHT: this.x += this.speed; break;
+        }
+
+        if (this.x < 0 || this.x > SCREEN_SIZE || this.y < 0 || this.y > SCREEN_SIZE) {
+            this.active = false;
+        }
+
+        // Hit walls
+        for (let i = walls.length - 1; i >= 0; i--) {
+            let w = walls[i];
+            if (this.intersects(w)) {
+                this.active = false;
+                if (w.type === TYPE.BRICK) {
+                    walls.splice(i, 1);
+                    createExplosion(w.x, w.y, 'small');
+                } else {
+                    createExplosion(this.x - 6, this.y - 6, 'small');
+                }
+                return;
+            }
+        }
+
+        // Hit base
+        if (this.intersects(base)) {
+            this.active = false;
+            base.destroy();
+            return;
+        }
+
+        // Hit tanks
+        if (this.owner === 'player') {
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                if (this.intersects(enemies[i])) {
+                    this.active = false;
+                    createExplosion(enemies[i].x, enemies[i].y, 'big');
+                    enemies[i].destroy();
+                    enemies.splice(i, 1);
+                    return;
+                }
+            }
+        } else {
+            if (this.intersects(player)) {
+                this.active = false;
+                player.destroy();
+                return;
+            }
+        }
+
+        // Bullet collision
+        for (let b of bullets) {
+            if (b !== this && b.active && b.owner !== this.owner && this.intersects(b)) {
+                this.active = false;
+                b.active = false;
+                return;
+            }
+        }
+    }
+
+    draw() {
+        if (!this.active) return;
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+    }
+}
+
+class Tank extends Rect {
+    constructor(x, y, color, isPlayer) {
+        super(x, y, 26, 26); // 26px size allows movement in 32px corridors
+        this.color = color;
+        this.dir = isPlayer ? DIR.UP : DIR.DOWN;
+        this.speed = isPlayer ? 2 : 1.5;
+        this.isPlayer = isPlayer;
+        this.cooldown = 0;
+        this.moving = false;
+        this.frame = 0;
+    }
+
+    move(direction) {
+        // Axis locking (cannot turn immediately if misaligned? Simplified here)
+        this.dir = direction;
+        this.moving = true;
+        let nextX = this.x;
+        let nextY = this.y;
+
+        switch(direction) {
+            case DIR.UP: nextY -= this.speed; break;
+            case DIR.DOWN: nextY += this.speed; break;
+            case DIR.LEFT: nextX -= this.speed; break;
+            case DIR.RIGHT: nextX += this.speed; break;
+        }
+
+        // Collision check
+        let nextRect = new Rect(nextX, nextY, this.w, this.h);
+
+        // Boundary
+        if (nextX < 0 || nextX + this.w > SCREEN_SIZE || nextY < 0 || nextY + this.h > SCREEN_SIZE) return;
+
+        // Obstacles
+        for (let w of walls) { if (nextRect.intersects(w)) return; }
+        for (let w of water) { if (nextRect.intersects(w)) return; }
+        if (nextRect.intersects(base)) return;
+
+        // Tanks
+        if (this.isPlayer) {
+            for (let e of enemies) { if (nextRect.intersects(e)) return; }
+        } else {
+            if (nextRect.intersects(player)) return;
+            for (let e of enemies) { if (e !== this && nextRect.intersects(e)) return; }
+        }
+
+        this.x = nextX;
+        this.y = nextY;
+    }
+
+    shoot() {
+        if (this.cooldown > 0) return;
+        let bx, by;
+        const center = 13;
+        switch(this.dir) {
+            case DIR.UP: bx = this.x + center - 2; by = this.y - 4; break;
+            case DIR.DOWN: bx = this.x + center - 2; by = this.y + this.h; break;
+            case DIR.LEFT: bx = this.x - 4; by = this.y + center - 2; break;
+            case DIR.RIGHT: bx = this.x + this.w; by = this.y + center - 2; break;
+        }
+        bullets.push(new Bullet(bx - 6, by - 6, this.dir, this.isPlayer ? 'player' : 'enemy'));
+        this.cooldown = this.isPlayer ? 20 : 60;
+    }
+
+    update() {
+        if (this.cooldown > 0) this.cooldown--;
+        if (this.moving) {
+            if (frameCount % 5 === 0) this.frame = 1 - this.frame;
+        }
+        this.moving = false;
+    }
+
+    draw() {
+        ctx.save();
+        ctx.translate(this.x + 13, this.y + 13);
+        if (this.dir === DIR.RIGHT) ctx.rotate(Math.PI / 2);
+        if (this.dir === DIR.DOWN) ctx.rotate(Math.PI);
+        if (this.dir === DIR.LEFT) ctx.rotate(-Math.PI / 2);
+        ctx.translate(-13, -13);
+
+        const c = this.color;
+
+        // Tracks
+        ctx.fillStyle = this.isPlayer ? '#dcb15c' : '#ccc';
+        if(this.frame === 0) {
+            ctx.fillRect(2, 2, 4, 24);
+            ctx.fillRect(20, 2, 4, 24);
+        } else {
+            ctx.fillRect(2, 4, 4, 24);
+            ctx.fillRect(20, 4, 4, 24);
+        }
+
+        // Body
+        ctx.fillStyle = c;
+        ctx.fillRect(6, 6, 14, 18);
+        ctx.fillStyle = this.isPlayer ? '#e8d59d' : '#eee';
+        ctx.fillRect(9, 10, 8, 8);
+        ctx.fillStyle = '#ccc';
+        ctx.fillRect(11, 0, 4, 12);
+
+        ctx.restore();
+    }
+
+    destroy() { } // overridden later
+}
+
+class Base extends Rect {
+    constructor(x, y) {
+        super(x, y, 32, 32);
+        this.alive = true;
+    }
+
+    draw() {
+        if (this.alive) {
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(this.x, this.y, 32, 32);
+            ctx.fillStyle = '#ccc';
+            ctx.beginPath();
+            ctx.moveTo(this.x + 16, this.y + 4);
+            ctx.lineTo(this.x + 4, this.y + 28);
+            ctx.lineTo(this.x + 28, this.y + 28);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.fillRect(this.x + 12, this.y + 10, 8, 8);
+        } else {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(this.x, this.y, 32, 32);
+            // broken debris
+            ctx.fillStyle = '#999';
+            ctx.fillRect(this.x+4, this.y+4, 8, 8);
+            ctx.fillRect(this.x+20, this.y+20, 8, 8);
+        }
+    }
+
+    destroy() {
+        if (!this.alive) return;
+        this.alive = false;
+        createExplosion(this.x, this.y, 'big');
+        gameOver();
+    }
+}
+
+function createExplosion(x, y, type) {
+    explosions.push({ x: x, y: y, timer: 15, type: type });
+}
+
+function initGame() {
+    walls = []; water = []; bushes = []; enemies = []; bullets = []; explosions = [];
+
+    // Player Spawn at Col 8 (128px), Row 24 (384px)
+    // NOTE: This area must be clear in LEVEL_1
+    player = new Tank(128, 384, '#e8b233', true);
+    base = new Base(192, 384); // Base at 12*16=192
+
+    // Load Map
+    for (let r = 0; r < MAP_SIZE; r++) {
+        for (let c = 0; c < MAP_SIZE; c++) {
+            let val = LEVEL_1[r][c];
+            let x = c * TILE_SIZE;
+            let y = r * TILE_SIZE;
+
+            // Hardcode base protection wall logic for safety (ensure consistency)
+            if (r >= 24 && c >= 11 && c <= 14) {
+                 // Base structure handled by map array now, but keep overrides if needed
+                 // Map array above has cleared the player area (cols 8,9,10)
+            }
+
+            if (val === 1) walls.push({ x:x, y:y, w:16, h:16, type: TYPE.BRICK });
+            if (val === 2) walls.push({ x:x, y:y, w:16, h:16, type: TYPE.STEEL });
+            if (val === 3) bushes.push({ x:x, y:y, w:16, h:16 });
+            if (val === 4) water.push({ x:x, y:y, w:16, h:16 });
+        }
+    }
+
+    spawnEnemy(); spawnEnemy(); spawnEnemy();
+}
+
+function spawnEnemy() {
+    if (enemies.length >= 4) return;
+    const spawns = [{x: 0, y: 0}, {x: 192, y: 0}, {x: 384, y: 0}];
+    let pos = spawns[Math.floor(Math.random() * spawns.length)];
+    let safe = true;
+    for(let e of enemies) {
+        if(Math.abs(e.x - pos.x) < 32 && Math.abs(e.y - pos.y) < 32) safe = false;
+    }
+    if(safe) {
+        let enemy = new Tank(pos.x, pos.y, '#fff', false);
+        enemies.push(enemy);
+    }
+}
+
+function update() {
+    frameCount++;
+    if (gameState !== 'PLAYING') return;
+
+    // Movement with strict orthogonal control
+    let moved = false;
+    if (keys['ArrowUp'] || keys['w']) { player.move(DIR.UP); moved = true; }
+    else if (keys['ArrowDown'] || keys['s']) { player.move(DIR.DOWN); moved = true; }
+    else if (keys['ArrowLeft'] || keys['a']) { player.move(DIR.LEFT); moved = true; }
+    else if (keys['ArrowRight'] || keys['d']) { player.move(DIR.RIGHT); moved = true; }
+
+    if (moved) player.update();
+
+    if (keys[' ']) player.shoot();
+
+    if (frameCount % 100 === 0 && enemies.length < 4) spawnEnemy();
+
+    enemies.forEach(e => {
+        if (Math.random() < 0.02) e.dir = Math.floor(Math.random() * 4);
+        e.move(e.dir);
+        if (Math.random() < 0.03) e.shoot();
+        e.update();
+    });
+
+    bullets.forEach(b => b.update());
+    bullets = bullets.filter(b => b.active);
+
+    explosions.forEach(e => e.timer--);
+    explosions = explosions.filter(e => e.timer > 0);
+}
+
+function draw() {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#004080';
+    for(let w of water) ctx.fillRect(w.x, w.y, w.w, w.h);
+
+    base.draw();
+
+    if (gameState === 'PLAYING' || gameState === 'WIN') player.draw();
+    enemies.forEach(e => e.draw());
+
+    for(let w of walls) {
+        if (w.type === TYPE.BRICK) {
+            ctx.fillStyle = '#a83e00';
+            ctx.fillRect(w.x, w.y, w.w, w.h);
+            ctx.fillStyle = '#000';
+            ctx.fillRect(w.x, w.y+7, 16, 2);
+            ctx.fillRect(w.x+7, w.y, 2, 7);
+            ctx.fillRect(w.x+7, w.y+9, 2, 7);
+        } else {
+            ctx.fillStyle = '#ccc';
+            ctx.fillRect(w.x+2, w.y+2, 12, 12);
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(w.x+4, w.y+4, 8, 8);
+        }
+    }
+
+    bullets.forEach(b => b.draw());
+
+    ctx.fillStyle = 'rgba(0, 150, 0, 0.8)';
+    for(let b of bushes) ctx.fillRect(b.x, b.y, b.w, b.h);
+
+    explosions.forEach(e => {
+        ctx.fillStyle = (Math.floor(e.timer / 2) % 2 === 0) ? '#f00' : '#ff0';
+        let size = e.type === 'big' ? 24 : 12;
+        ctx.beginPath();
+        ctx.arc(e.x + 8, e.y + 8, size * (e.timer/15), 0, Math.PI*2);
+        ctx.fill();
+    });
+}
+
+function gameOver() {
+    gameState = 'GAMEOVER';
+    document.getElementById('ui-layer').children[1].classList.remove('hidden');
+}
+
+function restartGame() {
+    initGame();
+    gameState = 'PLAYING';
+    document.querySelectorAll('#ui-layer > div').forEach(d => d.classList.add('hidden'));
+}
+
+// Click to start
+function startGameClick() {
+    if (gameState !== 'PLAYING') restartGame();
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+window.addEventListener('keydown', e => {
+    // Prevent scrolling
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+    keys[e.key] = true;
+    if (e.key === ' ') {
+        if (gameState !== 'PLAYING') restartGame();
+    }
+});
+
+window.addEventListener('keyup', e => {
+    keys[e.key] = false;
+});
+
+// Player death logic
+player = { destroy: () => {} };
+Tank.prototype.destroy = function() {
+    if (this.isPlayer) {
+        createExplosion(this.x, this.y, 'big');
+        this.x = -100; // Move away
+        gameOver();
+    } else {
+        // Enemy death logic is handled in bullet loop (splice)
+    }
+};
+
+initGame();
+gameState = 'START';
+draw();
+loop();
+
+</script>
+</body>
+</html>
+
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/13/2026-02-13-dragon-ball-breakout/" title="DRAGON BALL 弹球打砖块">DRAGON BALL 弹球打砖块</a><time datetime="2026-02-13T08:30:00.000Z" title="Created 2026-02-13 16:30:00">2026-02-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/01/2026-01-01-multimodal-arena/" title="Multimodal Arena">Multimodal Arena</a><time datetime="2026-01-01T04:00:00.000Z" title="Created 2026-01-01 12:00:00">2026-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/30/2025-12-29-smol-analysis/" title="Smol News 商业分析报告 (2025-12-29)">Smol News 商业分析报告 (2025-12-29)</a><time datetime="2025-12-30T13:41:04.000Z" title="Created 2025-12-30 21:41:04">2025-12-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/hello-world/" title="Hello World">Hello World</a><time datetime="2025-12-29T13:23:22.000Z" title="Created 2025-12-29 21:23:22">2025-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/2025-12-29-life-compass/" title="Life Compass">Life Compass</a><time datetime="2025-12-29T11:00:00.000Z" title="Created 2025-12-29 19:00:00">2025-12-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E5%88%86%E6%9E%90/"><span class="card-category-list-name">每日分析</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">游戏</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/smol-ai/" style="font-size: 1.5em; color: #99a9bf">smol.ai</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">人生规划</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 1.1em; color: #999">多模态</a> <a href="/tags/%E4%BC%91%E9%97%B2%E6%B8%B8%E6%88%8F/" style="font-size: 1.1em; color: #999">休闲游戏</a> <a href="/tags/%E6%89%93%E7%A0%96%E5%9D%97/" style="font-size: 1.1em; color: #999">打砖块</a> <a href="/tags/%E8%87%AA%E6%88%91%E8%AF%84%E4%BC%B0/" style="font-size: 1.1em; color: #999">自我评估</a> <a href="/tags/%E5%A4%8D%E5%8F%A4%E6%B8%B8%E6%88%8F/" style="font-size: 1.5em; color: #99a9bf">复古游戏</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" style="font-size: 1.1em; color: #999">模型对比</a> <a href="/tags/AI/" style="font-size: 1.5em; color: #99a9bf">AI</a> <a href="/tags/%E5%95%86%E4%B8%9A%E5%88%86%E6%9E%90/" style="font-size: 1.5em; color: #99a9bf">商业分析</a> <a href="/tags/%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98/" style="font-size: 1.5em; color: #99a9bf">坦克大战</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              January 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              December 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">8</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-13T08:29:42.143Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
