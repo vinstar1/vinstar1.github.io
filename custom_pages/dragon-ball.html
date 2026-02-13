@@ -268,8 +268,8 @@
             hitFlash: 0,
             // ★★★ 分裂球设置 ★★★
             // 修改下面这行来控制哪些砖块触发分裂：
-            splitOnHit: row === 0 && (col === 0 || col === levelConfig.cols - 1)
-            // 当前设置: 第一行两端的砖块
+            splitOnHit: col === 0 || col === levelConfig.cols - 1
+            // 当前设置: 两侧边缘列
             // 其他示例:
             //   splitOnHit: row === 0                    ← 第一行全部
             //   splitOnHit: (row + col) % 5 === 0        ← 均匀分布
