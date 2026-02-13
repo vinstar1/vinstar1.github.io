@@ -14,14 +14,19 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             background: #050510;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            font-family: 'Orbitron', sans-serif;
-            overflow: hidden;
             position: relative;
         }
 
@@ -53,70 +58,59 @@
             }
         }
 
-        #game-wrapper {
-            position: relative;
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
             z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
         }
 
         #hud {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 480px;
-            padding: 10px 20px;
-            background: rgba(10, 15, 30, 0.85);
+            gap: 32px;
+            padding: 8px 24px;
+            background: rgba(10, 15, 30, 0.8);
             border: 1px solid rgba(100, 200, 255, 0.15);
-            border-radius: 12px;
+            border-radius: 10px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            transition: opacity 0.3s;
         }
 
         .hud-item {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: rgba(180, 220, 255, 0.8);
+            color: rgba(180, 220, 255, 0.7);
         }
 
         .hud-item .value {
             color: #ffcc33;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             text-shadow: 0 0 8px rgba(255, 200, 50, 0.5);
         }
 
-        #game-container {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow:
-                0 0 40px rgba(0, 100, 200, 0.15),
-                0 0 80px rgba(0, 50, 100, 0.1),
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                inset 0 0 1px rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(80, 160, 255, 0.2);
-        }
-
-        canvas {
-            display: block;
-            background-color: #0a0e18;
-        }
-
         #ui-layer {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 10;
+            z-index: 15;
+            pointer-events: auto;
         }
 
         .hidden {
@@ -125,46 +119,47 @@
 
         .screen-overlay {
             text-align: center;
-            padding: 40px;
+            padding: 48px 60px;
             background: rgba(5, 8, 20, 0.92);
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid rgba(100, 180, 255, 0.15);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
         }
 
         h1 {
             font-family: 'Press Start 2P', monospace;
-            font-size: 28px;
-            margin: 0 0 24px 0;
+            font-size: 36px;
+            margin: 0 0 28px 0;
             text-transform: uppercase;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .title-main {
             background: linear-gradient(180deg, #ff4444, #cc1111);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 8px rgba(255, 50, 50, 0.4));
+            filter: drop-shadow(0 3px 10px rgba(255, 50, 50, 0.5));
         }
 
         .title-win {
             background: linear-gradient(180deg, #44ff88, #11cc44);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 8px rgba(50, 255, 100, 0.4));
+            filter: drop-shadow(0 3px 10px rgba(50, 255, 100, 0.5));
         }
 
         .title-lose {
             background: linear-gradient(180deg, #ff6644, #cc3311);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 8px rgba(255, 80, 50, 0.4));
+            filter: drop-shadow(0 3px 10px rgba(255, 80, 50, 0.5));
         }
 
         p {
             font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
+            font-size: 13px;
             color: rgba(180, 220, 255, 0.7);
             margin: 6px 0;
             letter-spacing: 1px;
@@ -173,6 +168,7 @@
         .blink {
             animation: blinker 1.2s ease-in-out infinite;
             color: #ffcc33;
+            font-size: 14px;
         }
 
         @keyframes blinker {
@@ -188,24 +184,24 @@
         }
 
         .controls-hint {
-            margin-top: 20px;
-            padding: 12px 16px;
+            margin-top: 24px;
+            padding: 16px 20px;
             background: rgba(30, 60, 120, 0.2);
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid rgba(100, 180, 255, 0.1);
         }
 
         .controls-hint p {
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(140, 180, 220, 0.6);
-            margin: 3px 0;
+            margin: 4px 0;
         }
 
         .back-btn {
-            position: absolute;
+            position: fixed;
             top: 12px;
             right: 16px;
-            z-index: 20;
+            z-index: 30;
             background: rgba(10, 15, 30, 0.7);
             border: 1px solid rgba(100, 200, 255, 0.2);
             color: rgba(180, 220, 255, 0.7);
@@ -230,34 +226,31 @@
 <body>
     <a class="back-btn" href="/custom_pages/games.html">◀ BACK</a>
 
-    <div id="game-wrapper">
-        <div id="hud">
-            <div class="hud-item">KILLS: <span class="value" id="kill-count">0</span></div>
-            <div class="hud-item">ENEMIES: <span class="value" id="enemy-count">0</span></div>
-            <div class="hud-item">STATUS: <span class="value" id="game-status">READY</span></div>
-        </div>
+    <div id="hud">
+        <div class="hud-item">KILLS: <span class="value" id="kill-count">0</span></div>
+        <div class="hud-item">ENEMIES: <span class="value" id="enemy-count">0</span></div>
+        <div class="hud-item">STATUS: <span class="value" id="game-status">READY</span></div>
+    </div>
 
-        <div id="game-container">
-            <canvas id="gameCanvas" width="480" height="480"></canvas>
-            <div id="ui-layer" onclick="startGameClick()">
-                <div id="start-screen" class="screen-overlay">
-                    <h1><span class="title-main">BATTLE<br>CITY</span></h1>
-                    <p class="blink">▶ PRESS SPACE OR CLICK TO START</p>
-                    <div class="controls-hint">
-                        <p>🎮 WASD / ARROWS — MOVE</p>
-                        <p>🔫 SPACE — FIRE</p>
-                        <p>🎯 DESTROY ALL ENEMIES TO WIN</p>
-                    </div>
-                </div>
-                <div id="game-over-screen" class="screen-overlay hidden">
-                    <h1><span class="title-lose">GAME<br>OVER</span></h1>
-                    <p class="blink">▶ PRESS SPACE TO RETRY</p>
-                </div>
-                <div id="win-screen" class="screen-overlay hidden">
-                    <h1><span class="title-win">VICTORY!</span></h1>
-                    <p class="blink">▶ PRESS SPACE FOR NEXT BATTLE</p>
-                </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="ui-layer" onclick="startGameClick()">
+        <div id="start-screen" class="screen-overlay">
+            <h1><span class="title-main">BATTLE<br>CITY</span></h1>
+            <p class="blink">▶ PRESS SPACE OR CLICK TO START</p>
+            <div class="controls-hint">
+                <p>🎮 WASD / ARROWS — MOVE</p>
+                <p>🔫 SPACE — FIRE</p>
+                <p>🎯 DESTROY ALL ENEMIES TO WIN</p>
             </div>
+        </div>
+        <div id="game-over-screen" class="screen-overlay hidden">
+            <h1><span class="title-lose">GAME<br>OVER</span></h1>
+            <p class="blink">▶ PRESS SPACE TO RETRY</p>
+        </div>
+        <div id="win-screen" class="screen-overlay hidden">
+            <h1><span class="title-win">VICTORY!</span></h1>
+            <p class="blink">▶ PRESS SPACE FOR NEXT BATTLE</p>
         </div>
     </div>
 
@@ -268,10 +261,29 @@
         const enemyCountEl = document.getElementById('enemy-count');
         const gameStatusEl = document.getElementById('game-status');
 
+        // === Full-screen rendering ===
+        const GAME_SIZE = 416; // logical game area
+        let scale = 1;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Fit game area to fill the screen with padding for HUD
+            const padding = 60;
+            const availW = canvas.width - padding * 2;
+            const availH = canvas.height - padding * 2;
+            scale = Math.min(availW / GAME_SIZE, availH / GAME_SIZE);
+            offsetX = (canvas.width - GAME_SIZE * scale) / 2;
+            offsetY = (canvas.height - GAME_SIZE * scale) / 2;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
         const TILE_SIZE = 16;
         const MAP_SIZE = 26;
-        const SCREEN_SIZE = 416;
-        const OFFSET = 32; // center the 416px map in the 480px canvas
+        const SCREEN_SIZE = GAME_SIZE;
 
         let gameState = 'START';
         let frameCount = 0;
@@ -284,14 +296,11 @@
         let base = null, player = null;
         let enemies = [], bullets = [], explosions = [], particles = [];
 
-        // Stars background
         const stars = [];
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 120; i++) {
             stars.push({
-                x: Math.random() * 480,
-                y: Math.random() * 480,
+                x: Math.random(), y: Math.random(),
                 size: Math.random() * 1.5 + 0.5,
-                speed: Math.random() * 0.3 + 0.1,
                 alpha: Math.random()
             });
         }
@@ -330,21 +339,17 @@
 
         class Rect {
             constructor(x, y, w, h) { this.x = x; this.y = y; this.w = w; this.h = h; }
-            intersects(other) {
-                return this.x < other.x + other.w && this.x + this.w > other.x &&
-                    this.y < other.y + other.h && this.y + this.h > other.y;
+            intersects(o) {
+                return this.x < o.x + o.w && this.x + this.w > o.x &&
+                    this.y < o.y + o.h && this.y + this.h > o.y;
             }
         }
 
         class Bullet extends Rect {
             constructor(x, y, dir, owner) {
                 super(x + 6, y + 6, 4, 4);
-                this.dir = dir;
-                this.speed = 5;
-                this.owner = owner;
-                this.active = true;
+                this.dir = dir; this.speed = 5; this.owner = owner; this.active = true;
             }
-
             update() {
                 if (!this.active) return;
                 switch (this.dir) {
@@ -353,19 +358,15 @@
                     case DIR.LEFT: this.x -= this.speed; break;
                     case DIR.RIGHT: this.x += this.speed; break;
                 }
-
                 if (this.x < 0 || this.x > SCREEN_SIZE || this.y < 0 || this.y > SCREEN_SIZE) {
-                    this.active = false;
-                    spawnParticles(this.x + 2, this.y + 2, '#88ccff', 4);
+                    this.active = false; spawnParticles(this.x + 2, this.y + 2, '#88ccff', 4);
                 }
-
                 for (let i = walls.length - 1; i >= 0; i--) {
                     let w = walls[i];
                     if (this.intersects(w)) {
                         this.active = false;
                         if (w.type === TYPE.BRICK) {
-                            walls.splice(i, 1);
-                            createExplosion(w.x, w.y, 'small');
+                            walls.splice(i, 1); createExplosion(w.x, w.y, 'small');
                             spawnParticles(w.x + 8, w.y + 8, '#ff8844', 10);
                         } else {
                             createExplosion(this.x - 6, this.y - 6, 'small');
@@ -374,336 +375,186 @@
                         return;
                     }
                 }
-
-                if (this.intersects(base)) {
-                    this.active = false;
-                    base.destroy();
-                    return;
-                }
-
+                if (this.intersects(base)) { this.active = false; base.destroy(); return; }
                 if (this.owner === 'player') {
                     for (let i = enemies.length - 1; i >= 0; i--) {
                         if (this.intersects(enemies[i])) {
                             this.active = false;
                             createExplosion(enemies[i].x, enemies[i].y, 'big');
                             spawnParticles(enemies[i].x + 13, enemies[i].y + 13, '#ff4444', 20);
-                            enemies[i].destroy();
-                            enemies.splice(i, 1);
-                            killCount++;
-                            killCountEl.textContent = killCount;
-                            updateEnemyCount();
-                            if (totalEnemiesSpawned >= MAX_ENEMIES && enemies.length === 0) {
-                                youWin();
-                            }
+                            enemies[i].destroy(); enemies.splice(i, 1);
+                            killCount++; killCountEl.textContent = killCount; updateEnemyCount();
+                            if (totalEnemiesSpawned >= MAX_ENEMIES && enemies.length === 0) youWin();
                             return;
                         }
                     }
                 } else {
-                    if (this.intersects(player)) {
-                        this.active = false;
-                        player.destroy();
-                        return;
-                    }
+                    if (this.intersects(player)) { this.active = false; player.destroy(); return; }
                 }
-
                 for (let b of bullets) {
                     if (b !== this && b.active && b.owner !== this.owner && this.intersects(b)) {
-                        this.active = false;
-                        b.active = false;
-                        spawnParticles(this.x, this.y, '#ffffff', 8);
-                        return;
+                        this.active = false; b.active = false;
+                        spawnParticles(this.x, this.y, '#ffffff', 8); return;
                     }
                 }
             }
-
             draw() {
                 if (!this.active) return;
-                const cx = this.x + OFFSET + 2;
-                const cy = this.y + OFFSET + 2;
-
-                // Glow
-                const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 8);
+                const glow = ctx.createRadialGradient(this.x + 2, this.y + 2, 0, this.x + 2, this.y + 2, 8);
                 if (this.owner === 'player') {
-                    glow.addColorStop(0, 'rgba(255, 255, 100, 0.6)');
-                    glow.addColorStop(1, 'rgba(255, 200, 50, 0)');
+                    glow.addColorStop(0, 'rgba(255,255,100,0.6)'); glow.addColorStop(1, 'rgba(255,200,50,0)');
                 } else {
-                    glow.addColorStop(0, 'rgba(255, 100, 100, 0.6)');
-                    glow.addColorStop(1, 'rgba(255, 50, 50, 0)');
+                    glow.addColorStop(0, 'rgba(255,100,100,0.6)'); glow.addColorStop(1, 'rgba(255,50,50,0)');
                 }
-                ctx.fillStyle = glow;
-                ctx.fillRect(cx - 8, cy - 8, 16, 16);
-
-                // Bullet core
+                ctx.fillStyle = glow; ctx.fillRect(this.x - 6, this.y - 6, 16, 16);
                 ctx.fillStyle = this.owner === 'player' ? '#ffffaa' : '#ff8888';
-                ctx.fillRect(this.x + OFFSET, this.y + OFFSET, this.w, this.h);
+                ctx.fillRect(this.x, this.y, this.w, this.h);
             }
         }
 
         class Tank extends Rect {
             constructor(x, y, color, isPlayer) {
                 super(x, y, 26, 26);
-                this.color = color;
-                this.dir = isPlayer ? DIR.UP : DIR.DOWN;
-                this.speed = isPlayer ? 2 : 1.5;
-                this.isPlayer = isPlayer;
-                this.cooldown = 0;
-                this.moving = false;
-                this.frame = 0;
-                this.spawnAnim = 20;
+                this.color = color; this.dir = isPlayer ? DIR.UP : DIR.DOWN;
+                this.speed = isPlayer ? 2 : 1.5; this.isPlayer = isPlayer;
+                this.cooldown = 0; this.moving = false; this.frame = 0; this.spawnAnim = 20;
             }
-
             move(direction) {
-                this.dir = direction;
-                this.moving = true;
-                let nextX = this.x, nextY = this.y;
+                this.dir = direction; this.moving = true;
+                let nx = this.x, ny = this.y;
                 switch (direction) {
-                    case DIR.UP: nextY -= this.speed; break;
-                    case DIR.DOWN: nextY += this.speed; break;
-                    case DIR.LEFT: nextX -= this.speed; break;
-                    case DIR.RIGHT: nextX += this.speed; break;
+                    case DIR.UP: ny -= this.speed; break;
+                    case DIR.DOWN: ny += this.speed; break;
+                    case DIR.LEFT: nx -= this.speed; break;
+                    case DIR.RIGHT: nx += this.speed; break;
                 }
-                let nextRect = new Rect(nextX, nextY, this.w, this.h);
-                if (nextX < 0 || nextX + this.w > SCREEN_SIZE || nextY < 0 || nextY + this.h > SCREEN_SIZE) return;
-                for (let w of walls) { if (nextRect.intersects(w)) return; }
-                for (let w of water) { if (nextRect.intersects(w)) return; }
-                if (nextRect.intersects(base)) return;
-                if (this.isPlayer) {
-                    for (let e of enemies) { if (nextRect.intersects(e)) return; }
-                } else {
-                    if (nextRect.intersects(player)) return;
-                    for (let e of enemies) { if (e !== this && nextRect.intersects(e)) return; }
+                let nr = new Rect(nx, ny, this.w, this.h);
+                if (nx < 0 || nx + this.w > SCREEN_SIZE || ny < 0 || ny + this.h > SCREEN_SIZE) return;
+                for (let w of walls) { if (nr.intersects(w)) return; }
+                for (let w of water) { if (nr.intersects(w)) return; }
+                if (nr.intersects(base)) return;
+                if (this.isPlayer) { for (let e of enemies) { if (nr.intersects(e)) return; } }
+                else {
+                    if (nr.intersects(player)) return;
+                    for (let e of enemies) { if (e !== this && nr.intersects(e)) return; }
                 }
-                this.x = nextX;
-                this.y = nextY;
-
-                // Engine particles
-                if (frameCount % 3 === 0) {
-                    const px = this.x + 13 + (Math.random() - 0.5) * 10;
-                    const py = this.y + 13 + (Math.random() - 0.5) * 10;
-                    spawnParticles(px, py, this.isPlayer ? '#ffcc44' : '#888888', 1);
-                }
+                this.x = nx; this.y = ny;
+                if (frameCount % 3 === 0) spawnParticles(this.x + 13 + (Math.random() - 0.5) * 10, this.y + 13 + (Math.random() - 0.5) * 10, this.isPlayer ? '#ffcc44' : '#666', 1);
             }
-
             shoot() {
                 if (this.cooldown > 0) return;
-                let bx, by;
-                const center = 13;
+                let bx, by; const c = 13;
                 switch (this.dir) {
-                    case DIR.UP: bx = this.x + center - 2; by = this.y - 4; break;
-                    case DIR.DOWN: bx = this.x + center - 2; by = this.y + this.h; break;
-                    case DIR.LEFT: bx = this.x - 4; by = this.y + center - 2; break;
-                    case DIR.RIGHT: bx = this.x + this.w; by = this.y + center - 2; break;
+                    case DIR.UP: bx = this.x + c - 2; by = this.y - 4; break;
+                    case DIR.DOWN: bx = this.x + c - 2; by = this.y + this.h; break;
+                    case DIR.LEFT: bx = this.x - 4; by = this.y + c - 2; break;
+                    case DIR.RIGHT: bx = this.x + this.w; by = this.y + c - 2; break;
                 }
                 bullets.push(new Bullet(bx - 6, by - 6, this.dir, this.isPlayer ? 'player' : 'enemy'));
                 this.cooldown = this.isPlayer ? 20 : 60;
-
-                // Muzzle flash
                 spawnParticles(bx, by, this.isPlayer ? '#ffff88' : '#ff6644', 5);
             }
-
             update() {
                 if (this.cooldown > 0) this.cooldown--;
                 if (this.spawnAnim > 0) this.spawnAnim--;
                 if (this.moving && frameCount % 5 === 0) this.frame = 1 - this.frame;
                 this.moving = false;
             }
-
             draw() {
                 ctx.save();
-                const ox = OFFSET + this.x + 13;
-                const oy = OFFSET + this.y + 13;
-
-                // Spawn animation
+                const ox = this.x + 13, oy = this.y + 13;
                 if (this.spawnAnim > 0) {
                     ctx.globalAlpha = 1 - (this.spawnAnim / 20);
                     const ring = ctx.createRadialGradient(ox, oy, 0, ox, oy, 30 - this.spawnAnim);
-                    ring.addColorStop(0, 'rgba(100, 200, 255, 0.4)');
-                    ring.addColorStop(1, 'rgba(100, 200, 255, 0)');
-                    ctx.fillStyle = ring;
-                    ctx.beginPath();
-                    ctx.arc(ox, oy, 30 - this.spawnAnim, 0, Math.PI * 2);
-                    ctx.fill();
+                    ring.addColorStop(0, 'rgba(100,200,255,0.4)'); ring.addColorStop(1, 'rgba(100,200,255,0)');
+                    ctx.fillStyle = ring; ctx.beginPath(); ctx.arc(ox, oy, 30 - this.spawnAnim, 0, Math.PI * 2); ctx.fill();
                 }
-
                 ctx.translate(ox, oy);
                 if (this.dir === DIR.RIGHT) ctx.rotate(Math.PI / 2);
                 if (this.dir === DIR.DOWN) ctx.rotate(Math.PI);
                 if (this.dir === DIR.LEFT) ctx.rotate(-Math.PI / 2);
                 ctx.translate(-13, -13);
-
-                // Shadow
-                ctx.fillStyle = 'rgba(0,0,0,0.3)';
-                ctx.fillRect(2, 4, 24, 24);
-
-                // Tracks
-                const trackColor = this.isPlayer ? '#8b7335' : '#666';
-                ctx.fillStyle = trackColor;
-                if (this.frame === 0) {
-                    ctx.fillRect(2, 2, 4, 24); ctx.fillRect(20, 2, 4, 24);
-                } else {
-                    ctx.fillRect(2, 4, 4, 24); ctx.fillRect(20, 4, 4, 24);
-                }
-                // Track details
+                ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.fillRect(2, 4, 24, 24);
+                const tc = this.isPlayer ? '#8b7335' : '#666';
+                ctx.fillStyle = tc;
+                if (this.frame === 0) { ctx.fillRect(2, 2, 4, 24); ctx.fillRect(20, 2, 4, 24); }
+                else { ctx.fillRect(2, 4, 4, 24); ctx.fillRect(20, 4, 4, 24); }
                 ctx.fillStyle = this.isPlayer ? '#6b5525' : '#444';
-                for (let i = 0; i < 6; i++) {
-                    const ty = 2 + i * 4 + this.frame * 2;
-                    if (ty < 26) {
-                        ctx.fillRect(2, ty, 4, 1);
-                        ctx.fillRect(20, ty, 4, 1);
-                    }
-                }
-
-                // Body with gradient
+                for (let i = 0; i < 6; i++) { const ty = 2 + i * 4 + this.frame * 2; if (ty < 26) { ctx.fillRect(2, ty, 4, 1); ctx.fillRect(20, ty, 4, 1); } }
                 if (this.isPlayer) {
-                    const bodyGrad = ctx.createLinearGradient(6, 6, 6, 24);
-                    bodyGrad.addColorStop(0, '#f0d060');
-                    bodyGrad.addColorStop(0.5, '#c49020');
-                    bodyGrad.addColorStop(1, '#906010');
-                    ctx.fillStyle = bodyGrad;
+                    const bg = ctx.createLinearGradient(6, 6, 6, 24);
+                    bg.addColorStop(0, '#f0d060'); bg.addColorStop(0.5, '#c49020'); bg.addColorStop(1, '#906010'); ctx.fillStyle = bg;
                 } else {
-                    const bodyGrad = ctx.createLinearGradient(6, 6, 6, 24);
-                    bodyGrad.addColorStop(0, '#ddd');
-                    bodyGrad.addColorStop(0.5, '#999');
-                    bodyGrad.addColorStop(1, '#666');
-                    ctx.fillStyle = bodyGrad;
+                    const bg = ctx.createLinearGradient(6, 6, 6, 24);
+                    bg.addColorStop(0, '#ddd'); bg.addColorStop(0.5, '#999'); bg.addColorStop(1, '#666'); ctx.fillStyle = bg;
                 }
                 ctx.fillRect(6, 6, 14, 18);
-
-                // Turret housing
-                ctx.fillStyle = this.isPlayer ? '#fff8d0' : '#bbb';
-                ctx.fillRect(9, 10, 8, 8);
-
-                // Barrel with gradient
-                const barrelGrad = ctx.createLinearGradient(11, 0, 15, 0);
-                barrelGrad.addColorStop(0, '#aaa');
-                barrelGrad.addColorStop(0.5, '#eee');
-                barrelGrad.addColorStop(1, '#888');
-                ctx.fillStyle = barrelGrad;
-                ctx.fillRect(11, 0, 4, 12);
-
-                // Barrel tip
-                ctx.fillStyle = '#ff8800';
-                ctx.fillRect(11, 0, 4, 2);
-
+                ctx.fillStyle = this.isPlayer ? '#fff8d0' : '#bbb'; ctx.fillRect(9, 10, 8, 8);
+                const br = ctx.createLinearGradient(11, 0, 15, 0);
+                br.addColorStop(0, '#aaa'); br.addColorStop(0.5, '#eee'); br.addColorStop(1, '#888');
+                ctx.fillStyle = br; ctx.fillRect(11, 0, 4, 12);
+                ctx.fillStyle = '#ff8800'; ctx.fillRect(11, 0, 4, 2);
                 ctx.restore();
             }
-
             destroy() { }
         }
 
         class Base extends Rect {
-            constructor(x, y) {
-                super(x, y, 32, 32);
-                this.alive = true;
-                this.pulsePhase = 0;
-            }
-
+            constructor(x, y) { super(x, y, 32, 32); this.alive = true; this.phase = 0; }
             draw() {
-                this.pulsePhase += 0.05;
-                const ox = this.x + OFFSET;
-                const oy = this.y + OFFSET;
-
+                this.phase += 0.05;
                 if (this.alive) {
-                    // Pulsing shield glow
-                    const pulse = Math.sin(this.pulsePhase) * 0.3 + 0.7;
-                    const shieldGlow = ctx.createRadialGradient(ox + 16, oy + 16, 5, ox + 16, oy + 16, 28);
-                    shieldGlow.addColorStop(0, `rgba(50, 100, 255, ${0.15 * pulse})`);
-                    shieldGlow.addColorStop(1, 'rgba(50, 100, 255, 0)');
-                    ctx.fillStyle = shieldGlow;
-                    ctx.beginPath();
-                    ctx.arc(ox + 16, oy + 16, 28, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    // Base body
-                    const baseGrad = ctx.createLinearGradient(ox, oy, ox, oy + 32);
-                    baseGrad.addColorStop(0, '#3366cc');
-                    baseGrad.addColorStop(1, '#1a3366');
-                    ctx.fillStyle = baseGrad;
-                    ctx.fillRect(ox, oy, 32, 32);
-
-                    // Eagle emblem
-                    ctx.fillStyle = '#ddd';
-                    ctx.beginPath();
-                    ctx.moveTo(ox + 16, oy + 4);
-                    ctx.lineTo(ox + 4, oy + 28);
-                    ctx.lineTo(ox + 28, oy + 28);
-                    ctx.fill();
-
-                    // Inner detail
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(ox + 12, oy + 10, 8, 8);
-
-                    // Border glow
-                    ctx.strokeStyle = `rgba(100, 180, 255, ${0.4 * pulse})`;
-                    ctx.lineWidth = 1;
-                    ctx.strokeRect(ox + 0.5, oy + 0.5, 31, 31);
+                    const p = Math.sin(this.phase) * 0.3 + 0.7;
+                    const sg = ctx.createRadialGradient(this.x + 16, this.y + 16, 5, this.x + 16, this.y + 16, 28);
+                    sg.addColorStop(0, `rgba(50,100,255,${0.15 * p})`); sg.addColorStop(1, 'rgba(50,100,255,0)');
+                    ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(this.x + 16, this.y + 16, 28, 0, Math.PI * 2); ctx.fill();
+                    const bg = ctx.createLinearGradient(this.x, this.y, this.x, this.y + 32);
+                    bg.addColorStop(0, '#3366cc'); bg.addColorStop(1, '#1a3366'); ctx.fillStyle = bg;
+                    ctx.fillRect(this.x, this.y, 32, 32);
+                    ctx.fillStyle = '#ddd'; ctx.beginPath();
+                    ctx.moveTo(this.x + 16, this.y + 4); ctx.lineTo(this.x + 4, this.y + 28); ctx.lineTo(this.x + 28, this.y + 28); ctx.fill();
+                    ctx.fillStyle = '#fff'; ctx.fillRect(this.x + 12, this.y + 10, 8, 8);
+                    ctx.strokeStyle = `rgba(100,180,255,${0.4 * p})`; ctx.lineWidth = 1; ctx.strokeRect(this.x + 0.5, this.y + 0.5, 31, 31);
                 } else {
-                    ctx.fillStyle = '#111';
-                    ctx.fillRect(ox, oy, 32, 32);
-                    ctx.fillStyle = '#444';
-                    ctx.fillRect(ox + 4, oy + 4, 8, 8);
-                    ctx.fillRect(ox + 20, oy + 20, 8, 8);
-                    ctx.fillStyle = '#333';
-                    ctx.fillRect(ox + 14, oy + 10, 6, 6);
+                    ctx.fillStyle = '#111'; ctx.fillRect(this.x, this.y, 32, 32);
+                    ctx.fillStyle = '#444'; ctx.fillRect(this.x + 4, this.y + 4, 8, 8); ctx.fillRect(this.x + 20, this.y + 20, 8, 8);
                 }
             }
-
             destroy() {
                 if (!this.alive) return;
-                this.alive = false;
-                createExplosion(this.x, this.y, 'big');
-                spawnParticles(this.x + 16, this.y + 16, '#ff4444', 30);
-                gameOver();
+                this.alive = false; createExplosion(this.x, this.y, 'big');
+                spawnParticles(this.x + 16, this.y + 16, '#ff4444', 30); gameOver();
             }
         }
 
         function spawnParticles(x, y, color, count) {
             for (let i = 0; i < count; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 3 + 1;
+                const a = Math.random() * Math.PI * 2, s = Math.random() * 3 + 1;
                 particles.push({
-                    x, y,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed,
-                    life: 15 + Math.random() * 15,
-                    maxLife: 15 + Math.random() * 15,
-                    size: Math.random() * 3 + 1,
-                    color
+                    x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s,
+                    life: 15 + Math.random() * 15, maxLife: 15 + Math.random() * 15,
+                    size: Math.random() * 3 + 1, color
                 });
             }
         }
-
-        function createExplosion(x, y, type) {
-            explosions.push({ x, y, timer: 20, type });
-        }
-
+        function createExplosion(x, y, type) { explosions.push({ x, y, timer: 20, type }); }
         function updateEnemyCount() {
-            const remaining = MAX_ENEMIES - totalEnemiesSpawned + enemies.length;
-            enemyCountEl.textContent = Math.max(0, remaining);
+            enemyCountEl.textContent = Math.max(0, MAX_ENEMIES - totalEnemiesSpawned + enemies.length);
         }
 
         function initGame() {
             walls = []; water = []; bushes = []; enemies = []; bullets = []; explosions = []; particles = [];
-            killCount = 0;
-            totalEnemiesSpawned = 0;
-            killCountEl.textContent = '0';
-
+            killCount = 0; totalEnemiesSpawned = 0; killCountEl.textContent = '0';
             player = new Tank(128, 384, '#e8b233', true);
             base = new Base(192, 384);
-
-            for (let r = 0; r < MAP_SIZE; r++) {
-                for (let c = 0; c < MAP_SIZE; c++) {
-                    let val = LEVEL_1[r][c];
-                    let x = c * TILE_SIZE, y = r * TILE_SIZE;
-                    if (val === 1) walls.push({ x, y, w: 16, h: 16, type: TYPE.BRICK });
-                    if (val === 2) walls.push({ x, y, w: 16, h: 16, type: TYPE.STEEL });
-                    if (val === 3) bushes.push({ x, y, w: 16, h: 16 });
-                    if (val === 4) water.push({ x, y, w: 16, h: 16 });
-                }
+            for (let r = 0; r < MAP_SIZE; r++) for (let c = 0; c < MAP_SIZE; c++) {
+                let v = LEVEL_1[r][c], x = c * TILE_SIZE, y = r * TILE_SIZE;
+                if (v === 1) walls.push({ x, y, w: 16, h: 16, type: TYPE.BRICK });
+                if (v === 2) walls.push({ x, y, w: 16, h: 16, type: TYPE.STEEL });
+                if (v === 3) bushes.push({ x, y, w: 16, h: 16 });
+                if (v === 4) water.push({ x, y, w: 16, h: 16 });
             }
-
-            spawnEnemy(); spawnEnemy(); spawnEnemy();
-            updateEnemyCount();
+            spawnEnemy(); spawnEnemy(); spawnEnemy(); updateEnemyCount();
         }
 
         function spawnEnemy() {
@@ -711,220 +562,151 @@
             const spawns = [{ x: 0, y: 0 }, { x: 192, y: 0 }, { x: 384, y: 0 }];
             let pos = spawns[Math.floor(Math.random() * spawns.length)];
             let safe = true;
-            for (let e of enemies) {
-                if (Math.abs(e.x - pos.x) < 32 && Math.abs(e.y - pos.y) < 32) safe = false;
-            }
-            if (safe) {
-                enemies.push(new Tank(pos.x, pos.y, '#fff', false));
-                totalEnemiesSpawned++;
-                updateEnemyCount();
-            }
+            for (let e of enemies) if (Math.abs(e.x - pos.x) < 32 && Math.abs(e.y - pos.y) < 32) safe = false;
+            if (safe) { enemies.push(new Tank(pos.x, pos.y, '#fff', false)); totalEnemiesSpawned++; updateEnemyCount(); }
         }
 
         function update() {
             frameCount++;
             if (gameState !== 'PLAYING') return;
-
             let moved = false;
             if (keys['ArrowUp'] || keys['w']) { player.move(DIR.UP); moved = true; }
             else if (keys['ArrowDown'] || keys['s']) { player.move(DIR.DOWN); moved = true; }
             else if (keys['ArrowLeft'] || keys['a']) { player.move(DIR.LEFT); moved = true; }
             else if (keys['ArrowRight'] || keys['d']) { player.move(DIR.RIGHT); moved = true; }
-
             if (moved) player.update();
             if (keys[' ']) player.shoot();
-
             if (frameCount % 100 === 0 && enemies.length < 4 && totalEnemiesSpawned < MAX_ENEMIES) spawnEnemy();
-
             enemies.forEach(e => {
                 if (Math.random() < 0.02) e.dir = Math.floor(Math.random() * 4);
-                e.move(e.dir);
-                if (Math.random() < 0.03) e.shoot();
-                e.update();
+                e.move(e.dir); if (Math.random() < 0.03) e.shoot(); e.update();
             });
-
-            bullets.forEach(b => b.update());
-            bullets = bullets.filter(b => b.active);
-
-            explosions.forEach(e => e.timer--);
-            explosions = explosions.filter(e => e.timer > 0);
-
+            bullets.forEach(b => b.update()); bullets = bullets.filter(b => b.active);
+            explosions.forEach(e => e.timer--); explosions = explosions.filter(e => e.timer > 0);
             particles.forEach(p => { p.life--; p.x += p.vx; p.y += p.vy; p.vx *= 0.95; p.vy *= 0.95; });
             particles = particles.filter(p => p.life > 0);
-
-            // Update stars
-            stars.forEach(s => {
-                s.alpha += Math.sin(frameCount * 0.02 + s.x) * 0.01;
-                s.alpha = Math.max(0.1, Math.min(1, s.alpha));
-            });
         }
 
         function draw() {
-            // Clear with dark background
+            // Full-screen background
             ctx.fillStyle = '#080c18';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Subtle stars
+            // Subtle stars across entire screen
             stars.forEach(s => {
-                ctx.fillStyle = `rgba(150, 200, 255, ${s.alpha * 0.3})`;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                ctx.fill();
+                s.alpha += Math.sin(frameCount * 0.02 + s.x * 100) * 0.01;
+                s.alpha = Math.max(0.1, Math.min(1, s.alpha));
+                ctx.fillStyle = `rgba(150,200,255,${s.alpha * 0.3})`;
+                ctx.beginPath(); ctx.arc(s.x * canvas.width, s.y * canvas.height, s.size, 0, Math.PI * 2); ctx.fill();
             });
 
-            // Game area border glow
-            ctx.strokeStyle = 'rgba(50, 120, 200, 0.2)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(OFFSET - 1, OFFSET - 1, SCREEN_SIZE + 2, SCREEN_SIZE + 2);
+            // Transform for game area
+            ctx.save();
+            ctx.translate(offsetX, offsetY);
+            ctx.scale(scale, scale);
 
-            // Scanline effect on game area
-            for (let i = 0; i < SCREEN_SIZE; i += 4) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(OFFSET, OFFSET + i, SCREEN_SIZE, 1);
+            // Game area background
+            ctx.fillStyle = '#0a0e18';
+            ctx.fillRect(0, 0, GAME_SIZE, GAME_SIZE);
+
+            // Game border glow
+            ctx.strokeStyle = 'rgba(50,120,200,0.25)';
+            ctx.lineWidth = 2 / scale;
+            ctx.strokeRect(-1, -1, GAME_SIZE + 2, GAME_SIZE + 2);
+
+            // Scanlines
+            for (let i = 0; i < GAME_SIZE; i += 4) {
+                ctx.fillStyle = 'rgba(0,0,0,0.04)'; ctx.fillRect(0, i, GAME_SIZE, 1);
             }
 
-            // Water with animation
+            // Water
             water.forEach(w => {
-                const phase = Math.sin(frameCount * 0.05 + w.x * 0.1) * 0.15 + 0.85;
-                ctx.fillStyle = `rgba(0, 80, 180, ${phase})`;
-                ctx.fillRect(w.x + OFFSET, w.y + OFFSET, w.w, w.h);
-                ctx.fillStyle = `rgba(100, 180, 255, ${0.2 * phase})`;
-                ctx.fillRect(w.x + OFFSET + 2, w.y + OFFSET + 2, w.w - 4, 3);
+                const p = Math.sin(frameCount * 0.05 + w.x * 0.1) * 0.15 + 0.85;
+                ctx.fillStyle = `rgba(0,80,180,${p})`; ctx.fillRect(w.x, w.y, w.w, w.h);
+                ctx.fillStyle = `rgba(100,180,255,${0.2 * p})`; ctx.fillRect(w.x + 2, w.y + 2, w.w - 4, 3);
             });
 
             base.draw();
-
             if (gameState === 'PLAYING' || gameState === 'WIN') player.draw();
             enemies.forEach(e => e.draw());
 
-            // Walls with enhanced rendering
+            // Walls
             for (let w of walls) {
-                const wx = w.x + OFFSET;
-                const wy = w.y + OFFSET;
                 if (w.type === TYPE.BRICK) {
-                    const brickGrad = ctx.createLinearGradient(wx, wy, wx, wy + 16);
-                    brickGrad.addColorStop(0, '#c85000');
-                    brickGrad.addColorStop(0.5, '#a83e00');
-                    brickGrad.addColorStop(1, '#882800');
-                    ctx.fillStyle = brickGrad;
-                    ctx.fillRect(wx, wy, w.w, w.h);
+                    const bg = ctx.createLinearGradient(w.x, w.y, w.x, w.y + 16);
+                    bg.addColorStop(0, '#c85000'); bg.addColorStop(0.5, '#a83e00'); bg.addColorStop(1, '#882800');
+                    ctx.fillStyle = bg; ctx.fillRect(w.x, w.y, w.w, w.h);
                     ctx.fillStyle = 'rgba(0,0,0,0.3)';
-                    ctx.fillRect(wx, wy + 7, 16, 2);
-                    ctx.fillRect(wx + 7, wy, 2, 7);
-                    ctx.fillRect(wx + 7, wy + 9, 2, 7);
-                    // Highlight
-                    ctx.fillStyle = 'rgba(255,200,100,0.1)';
-                    ctx.fillRect(wx, wy, 16, 3);
+                    ctx.fillRect(w.x, w.y + 7, 16, 2); ctx.fillRect(w.x + 7, w.y, 2, 7); ctx.fillRect(w.x + 7, w.y + 9, 2, 7);
+                    ctx.fillStyle = 'rgba(255,200,100,0.1)'; ctx.fillRect(w.x, w.y, 16, 3);
                 } else {
-                    // Steel with metallic look
-                    const steelGrad = ctx.createLinearGradient(wx, wy, wx + 16, wy + 16);
-                    steelGrad.addColorStop(0, '#e0e0e0');
-                    steelGrad.addColorStop(0.3, '#aaa');
-                    steelGrad.addColorStop(0.7, '#ccc');
-                    steelGrad.addColorStop(1, '#888');
-                    ctx.fillStyle = steelGrad;
-                    ctx.fillRect(wx + 1, wy + 1, 14, 14);
-                    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-                    ctx.lineWidth = 0.5;
-                    ctx.strokeRect(wx + 2, wy + 2, 12, 12);
+                    const sg = ctx.createLinearGradient(w.x, w.y, w.x + 16, w.y + 16);
+                    sg.addColorStop(0, '#e0e0e0'); sg.addColorStop(0.3, '#aaa'); sg.addColorStop(0.7, '#ccc'); sg.addColorStop(1, '#888');
+                    ctx.fillStyle = sg; ctx.fillRect(w.x + 1, w.y + 1, 14, 14);
                 }
             }
 
             bullets.forEach(b => b.draw());
 
-            // Bushes
             bushes.forEach(b => {
-                ctx.fillStyle = 'rgba(0, 160, 0, 0.85)';
-                ctx.fillRect(b.x + OFFSET, b.y + OFFSET, b.w, b.h);
-                ctx.fillStyle = 'rgba(0, 200, 0, 0.3)';
-                ctx.fillRect(b.x + OFFSET + 2, b.y + OFFSET + 2, 6, 6);
-                ctx.fillRect(b.x + OFFSET + 8, b.y + OFFSET + 8, 6, 6);
+                ctx.fillStyle = 'rgba(0,160,0,0.85)'; ctx.fillRect(b.x, b.y, b.w, b.h);
+                ctx.fillStyle = 'rgba(0,200,0,0.3)'; ctx.fillRect(b.x + 2, b.y + 2, 6, 6); ctx.fillRect(b.x + 8, b.y + 8, 6, 6);
             });
 
             // Explosions
             explosions.forEach(e => {
-                const progress = e.timer / 20;
-                let size = e.type === 'big' ? 28 : 14;
-
-                // Multi-layer explosion
-                const cx = e.x + OFFSET + 8;
-                const cy = e.y + OFFSET + 8;
-
-                // Outer glow
-                const outerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * progress * 1.5);
-                outerGlow.addColorStop(0, `rgba(255, 200, 50, ${progress * 0.3})`);
-                outerGlow.addColorStop(1, 'rgba(255, 100, 0, 0)');
-                ctx.fillStyle = outerGlow;
-                ctx.beginPath();
-                ctx.arc(cx, cy, size * progress * 1.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Core
-                const coreColor = progress > 0.5 ? '#ffffff' : '#ffcc00';
-                ctx.fillStyle = coreColor;
-                ctx.beginPath();
-                ctx.arc(cx, cy, size * progress * 0.6, 0, Math.PI * 2);
-                ctx.fill();
+                const p = e.timer / 20; let sz = e.type === 'big' ? 28 : 14;
+                const cx = e.x + 8, cy = e.y + 8;
+                const og = ctx.createRadialGradient(cx, cy, 0, cx, cy, sz * p * 1.5);
+                og.addColorStop(0, `rgba(255,200,50,${p * 0.3})`); og.addColorStop(1, 'rgba(255,100,0,0)');
+                ctx.fillStyle = og; ctx.beginPath(); ctx.arc(cx, cy, sz * p * 1.5, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = p > 0.5 ? '#fff' : '#ffcc00';
+                ctx.beginPath(); ctx.arc(cx, cy, sz * p * 0.6, 0, Math.PI * 2); ctx.fill();
             });
 
             // Particles
             particles.forEach(p => {
-                const alpha = p.life / p.maxLife;
-                ctx.globalAlpha = alpha;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x + OFFSET, p.y + OFFSET, p.size * alpha, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.globalAlpha = p.life / p.maxLife; ctx.fillStyle = p.color;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size * (p.life / p.maxLife), 0, Math.PI * 2); ctx.fill();
             });
             ctx.globalAlpha = 1;
 
-            // Vignette
-            const vignette = ctx.createRadialGradient(240, 240, 100, 240, 240, 350);
-            vignette.addColorStop(0, 'rgba(0,0,0,0)');
-            vignette.addColorStop(1, 'rgba(0,0,0,0.4)');
-            ctx.fillStyle = vignette;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.restore();
+
+            // Full-screen vignette
+            const vig = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width * 0.15, canvas.width / 2, canvas.height / 2, canvas.width * 0.7);
+            vig.addColorStop(0, 'rgba(0,0,0,0)'); vig.addColorStop(1, 'rgba(0,0,0,0.45)');
+            ctx.fillStyle = vig; ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
         function gameOver() {
-            gameState = 'GAMEOVER';
-            gameStatusEl.textContent = 'DEFEATED';
+            gameState = 'GAMEOVER'; gameStatusEl.textContent = 'DEFEATED';
             document.getElementById('game-over-screen').classList.remove('hidden');
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('win-screen').classList.add('hidden');
+            document.getElementById('ui-layer').style.pointerEvents = 'auto';
         }
-
         function youWin() {
-            gameState = 'WIN';
-            gameStatusEl.textContent = 'VICTORY';
+            gameState = 'WIN'; gameStatusEl.textContent = 'VICTORY';
             document.getElementById('win-screen').classList.remove('hidden');
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('game-over-screen').classList.add('hidden');
+            document.getElementById('ui-layer').style.pointerEvents = 'auto';
         }
-
         function restartGame() {
-            initGame();
-            gameState = 'PLAYING';
-            gameStatusEl.textContent = 'FIGHTING';
+            initGame(); gameState = 'PLAYING'; gameStatusEl.textContent = 'FIGHTING';
             document.querySelectorAll('#ui-layer > div').forEach(d => d.classList.add('hidden'));
+            document.getElementById('ui-layer').style.pointerEvents = 'none';
         }
+        function startGameClick() { if (gameState !== 'PLAYING') restartGame(); }
 
-        function startGameClick() {
-            if (gameState !== 'PLAYING') restartGame();
-        }
-
-        function loop() {
-            update();
-            draw();
-            requestAnimationFrame(loop);
-        }
+        function loop() { update(); draw(); requestAnimationFrame(loop); }
 
         window.addEventListener('keydown', e => {
             if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) e.preventDefault();
             keys[e.key] = true;
             if (e.key === ' ' && gameState !== 'PLAYING') restartGame();
         });
-
         window.addEventListener('keyup', e => { keys[e.key] = false; });
 
         player = { destroy: () => { } };
@@ -932,15 +714,11 @@
             if (this.isPlayer) {
                 createExplosion(this.x, this.y, 'big');
                 spawnParticles(this.x + 13, this.y + 13, '#ffcc00', 25);
-                this.x = -100;
-                gameOver();
+                this.x = -100; gameOver();
             }
         };
 
-        initGame();
-        gameState = 'START';
-        draw();
-        loop();
+        initGame(); gameState = 'START'; draw(); loop();
     </script>
 </body>
 
