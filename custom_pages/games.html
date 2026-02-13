@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小霸王游戏机 - 游戏选择</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-color: #202028;
+            font-family: 'Press Start 2P', monospace, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e74c3c;
+            text-shadow: 4px 4px 0 #000;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 1rem;
+            color: #f1c40f;
+            margin-bottom: 40px;
+            animation: blink 1s infinite;
+        }
+
+        .game-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-link {
+            display: block;
+            padding: 20px 40px;
+            background: #34495e;
+            color: #fff;
+            text-decoration: none;
+            border: 4px solid #fff;
+            font-size: 1.2rem;
+            width: 300px;
+            transition: transform 0.1s, background 0.1s;
+            box-shadow: 6px 6px 0 #000;
+        }
+
+        .game-link:hover {
+            transform: translate(-2px, -2px);
+            background: #e67e22;
+            box-shadow: 8px 8px 0 #000;
+            color: #000;
+        }
+
+        .game-link:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* TV Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanlines"></div>
+    <h1>GAME CONSOLE</h1>
+    <h2>INSERT COIN</h2>
+
+    <div class="game-list">
+        <a href="mypage2.html" class="game-link">BATTLE CITY<br><span style="font-size:0.6em; color: #ccc;">(Tank
+                1990)</span></a>
+        <a href="dragon-ball.html" class="game-link">DRAGON BALL<br><span
+                style="font-size:0.6em; color: #ccc;">(Breakout)</span></a>
+    </div>
+
+    <div class="footer">POWERED BY HEXO & DEEPMIND</div>
+</body>
+
+</html>
