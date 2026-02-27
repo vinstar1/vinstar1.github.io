@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFU 人体筋膜与穴位检索平台</title>
+    <meta name="description" content="交互式人体筋膜与穴位结构化检索工具，支持点击真实解剖 3D 模型定位肌肉与穴位信息。">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- 左侧：解剖图视觉交互层 -->
+        <main class="viewer-section" id="viewer-container">
+
+            <!-- 左上角品牌标签 -->
+            <div class="viewer-label">
+                <span>MFU</span> 筋膜检索系统 &nbsp;·&nbsp; 点击 3D 模型部位定位肌肉
+            </div>
+
+            <!-- 高精度真实解剖 3D 模型渲染层 -->
+            <div class="viewer-bg">
+                <div id="viewer-3d" class="viewer-3d" aria-label="人体解剖三维模型"></div>
+
+                <div id="viewer-loading" class="viewer-loading">
+                    <div class="spinner"></div>
+                    <p id="viewer-loading-text">正在加载高精度解剖 3D 模型... 0%</p>
+                </div>
+
+                <div id="viewer-status" class="viewer-status hidden"></div>
+            </div>
+
+        </main>
+
+        <!-- 右侧：信息检索层 -->
+        <aside class="panel-section">
+            <header class="panel-header">
+                <h1>筋膜 · 穴位检索</h1>
+                <p>MFU 结构化解剖知识库 — 点击左侧模型或直接搜索</p>
+
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" id="global-search" placeholder="输入肌肉或穴位名称..." autocomplete="off"
+                        spellcheck="false">
+                    <div id="search-results" class="search-results hidden"></div>
+                </div>
+            </header>
+
+            <div class="panel-content" id="panel-content">
+                <!-- 默认引导状态 -->
+                <div id="empty-state" class="empty-state">
+                    <div class="icon-placeholder">
+                        <svg viewBox="0 0 80 80" width="64" height="64" fill="none">
+                            <circle cx="40" cy="40" r="38" stroke="#dde1e9" stroke-width="2" />
+                            <path
+                                d="M40 20 C40 20 26 28 26 42 C26 52 32 58 40 60 C48 58 54 52 54 42 C54 28 40 20 40 20Z"
+                                fill="#f0f0f5" stroke="#c5cad6" stroke-width="1.5" />
+                            <circle cx="40" cy="36" r="4" fill="#c5cad6" />
+                        </svg>
+                    </div>
+                    <h3>准备就绪</h3>
+                    <p>点击左侧解剖 <strong>3D 模型部位</strong>，或在上方搜索肌肉、穴位名称</p>
+                </div>
+
+                <!-- 数据详情区（动态渲染） -->
+                <div id="detail-wrapper" class="detail-wrapper hidden">
+
+                    <!-- 肌肉信息卡 -->
+                    <div class="muscle-card">
+                        <h2 id="muscle-title" class="title">--</h2>
+                        <div class="tag-list">
+                            <span class="tag">筋膜系统</span>
+                            <span class="tag" id="muscle-region">--</span>
+                        </div>
+                        <p id="muscle-desc" class="desc">--</p>
+                    </div>
+
+                    <!-- 关联穴位区 -->
+                    <div class="acu-section">
+                        <div class="section-title">关联穴位</div>
+                        <div id="acu-list" class="acu-list"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 数据层 -->
+    <script src="data.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "./vendor/three/build/three.module.js"
+        }
+    }
+    </script>
+    <!-- 主逻辑 -->
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
