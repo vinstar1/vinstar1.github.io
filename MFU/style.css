@@ -1,0 +1,585 @@
+/* 全局变量定义与重置 — 浅色医疗主题 */
+:root {
+    --bg-main: #f4f5f7;
+    --bg-panel: #ffffff;
+    --bg-card: #f9f9fb;
+    --bg-hover: #eef0f5;
+
+    --text-primary: #1a1a2e;
+    --text-secondary: #6b6b80;
+
+    --accent: #c0392b;
+    /* 解剖红 */
+    --accent-glow: rgba(192, 57, 43, 0.15);
+    --accent-dark: #922b21;
+
+    --border: #dde1e9;
+
+    --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 主容器布局: 左右分栏 */
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* 左侧 3D 互动区 */
+.viewer-section {
+    flex: 1;
+    position: relative;
+    background: #e8eaef;
+    overflow: hidden;
+}
+
+/* 左侧的肌肉解剖底图 */
+.viewer-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e8eaef 0%, #dde1e9 100%);
+}
+
+.viewer-3d {
+    position: absolute;
+    inset: 0;
+}
+
+.viewer-3d canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.viewer-3d canvas:active {
+    cursor: grabbing;
+}
+
+.viewer-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--accent);
+    background: rgba(244, 245, 247, 0.8);
+    backdrop-filter: blur(2px);
+    z-index: 8;
+    transition: opacity 0.25s ease;
+}
+
+.viewer-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.viewer-loading p {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.viewer-status {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 9;
+    background: rgba(26, 26, 46, 0.86);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    max-width: min(80%, 420px);
+    line-height: 1.5;
+}
+
+.viewer-status.hidden {
+    display: none;
+}
+
+.viewer-status.error {
+    background: rgba(146, 43, 33, 0.92);
+}
+
+/* 加载动画 */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-main);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    transition: opacity 0.5s ease;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--accent-glow);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 左上角视图控制标签 */
+.viewer-label {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.viewer-label span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* 右侧侧边栏区 */
+.panel-section {
+    width: 440px;
+    background-color: var(--bg-panel);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.06);
+    z-index: 10;
+}
+
+/* 顶部搜索栏 */
+.panel-header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-panel);
+}
+
+.panel-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+    color: var(--text-primary);
+}
+
+.panel-header p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    width: 100%;
+    background-color: var(--bg-main);
+    border: 1.5px solid var(--border);
+    color: var(--text-primary);
+    padding: 11px 14px 11px 40px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.search-box input::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: white;
+}
+
+/* 联想搜索结果 */
+.search-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    max-height: 280px;
+    overflow-y: auto;
+    z-index: 20;
+}
+
+.search-results:empty {
+    display: none;
+}
+
+.search-results.hidden {
+    display: none;
+}
+
+.search-item {
+    padding: 11px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background: var(--bg-hover);
+}
+
+.search-type-badge {
+    font-size: 11px;
+    background: var(--accent-glow);
+    color: var(--accent-dark);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 主内容区域滚动 */
+.panel-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+}
+
+/* 滚动条美化 */
+.panel-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+/* 引导态 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.icon-placeholder {
+    color: #c5cad6;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 240px;
+}
+
+/* 详情卡片容器 */
+.detail-wrapper {
+    animation: fadeIn 0.35s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-wrapper.hidden {
+    display: none;
+}
+
+/* 肌肉主卡片 */
+.muscle-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.muscle-card .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.tag {
+    background: var(--accent-glow);
+    color: var(--accent-dark);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.muscle-card .desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+/* 穴位手风琴卡片 */
+.acu-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.acu-item:hover {
+    border-color: #c5cad6;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.acu-item.expanded {
+    border-color: var(--accent);
+    box-shadow: 0 3px 12px var(--accent-glow);
+}
+
+.acu-header {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.acu-name-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.acu-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.acu-item.expanded .acu-dot {
+    transform: scale(1.4);
+}
+
+.acu-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.acu-mfu-tag {
+    font-size: 11px;
+    background: #f0f0f5;
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.arrow-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    transition: transform var(--transition);
+    flex-shrink: 0;
+}
+
+.acu-item.expanded .arrow-icon {
+    transform: rotate(180deg);
+    color: var(--accent);
+}
+
+.acu-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.acu-item.expanded .acu-body {
+    max-height: 600px;
+}
+
+/* 穴位详情内容 —— 参考 IMG_4294 表格样式 */
+.acu-content {
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+}
+
+.acu-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.acu-info-table tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.acu-info-table tr:last-child {
+    border-bottom: none;
+}
+
+.acu-info-table .row-label {
+    padding: 10px 12px 10px 0;
+    color: var(--text-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+    vertical-align: top;
+    width: 68px;
+}
+
+.acu-info-table .row-value {
+    padding: 10px 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* 治疗标题行 */
+.treatment-header {
+    background: var(--bg-card);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding: 8px 0;
+    margin: 8px 0 0;
+    display: block;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+}
+
+/* 尚未填写数据的占位提示 */
+.empty-field {
+    color: #bbb;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* 响应式降级 */
+@media (max-width: 900px) {
+    body {
+        overflow: auto;
+    }
+
+    .app-container {
+        flex-direction: column;
+    }
+
+    .viewer-section {
+        height: 55vh;
+        flex: none;
+    }
+
+    .panel-section {
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+}
