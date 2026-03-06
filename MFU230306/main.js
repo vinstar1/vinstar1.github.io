@@ -3,7 +3,7 @@ import * as THREE from 'three';
 const appData = window.appData;
 const MODEL_URLS = [
     'assets/models/anatomy-high.glb',
-    '/assets/models/anatomy-high.glb'
+    './assets/models/anatomy-high.glb'
 ];
 const ORBIT_CONTROLS_URLS = [
     'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js',
@@ -19,7 +19,7 @@ const DRACO_LOADER_URLS = [
 ];
 const DRACO_DECODER_BASES = [
     'assets/draco/',
-    '/assets/draco/',
+    './assets/draco/',
     'https://www.gstatic.com/draco/versioned/decoders/1.5.7/',
     'https://www.gstatic.com/draco/v1/decoders/',
     'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/libs/draco/'
