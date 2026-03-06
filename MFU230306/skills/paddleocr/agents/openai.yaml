@@ -1,0 +1,4 @@
+interface:
+  display_name: "PaddleOCR Parser"
+  short_description: "Help with PaddleOCR parsing tasks"
+  default_prompt: "Use $paddleocr to parse a PDF or image through the PaddleOCR layout API."

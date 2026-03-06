@@ -1,0 +1,822 @@
+[
+  {
+    "page": 1,
+    "image": "output/ocr_page_previews/page_001.jpg",
+    "cropBox": {
+      "left": 142,
+      "top": 0,
+      "right": 1586,
+      "bottom": 916
+    }
+  },
+  {
+    "page": 2,
+    "image": "output/ocr_page_previews/page_002.jpg",
+    "cropBox": {
+      "left": 217,
+      "top": 67,
+      "right": 1046,
+      "bottom": 869
+    }
+  },
+  {
+    "page": 3,
+    "image": "output/ocr_page_previews/page_003.jpg",
+    "cropBox": {
+      "left": 275,
+      "top": 53,
+      "right": 1112,
+      "bottom": 871
+    }
+  },
+  {
+    "page": 4,
+    "image": "output/ocr_page_previews/page_004.jpg",
+    "cropBox": {
+      "left": 219,
+      "top": 53,
+      "right": 1044,
+      "bottom": 869
+    }
+  },
+  {
+    "page": 5,
+    "image": "output/ocr_page_previews/page_005.jpg",
+    "cropBox": {
+      "left": 273,
+      "top": 49,
+      "right": 1099,
+      "bottom": 863
+    }
+  },
+  {
+    "page": 6,
+    "image": "output/ocr_page_previews/page_006.jpg",
+    "cropBox": {
+      "left": 264,
+      "top": 51,
+      "right": 1050,
+      "bottom": 860
+    }
+  },
+  {
+    "page": 7,
+    "image": "output/ocr_page_previews/page_007.jpg",
+    "cropBox": {
+      "left": 306,
+      "top": 44,
+      "right": 1116,
+      "bottom": 871
+    }
+  },
+  {
+    "page": 8,
+    "image": "output/ocr_page_previews/page_008.jpg",
+    "cropBox": {
+      "left": 265,
+      "top": 67,
+      "right": 1036,
+      "bottom": 876
+    }
+  },
+  {
+    "page": 9,
+    "image": "output/ocr_page_previews/page_009.jpg",
+    "cropBox": {
+      "left": 234,
+      "top": 51,
+      "right": 1126,
+      "bottom": 879
+    }
+  },
+  {
+    "page": 10,
+    "image": "output/ocr_page_previews/page_010.jpg",
+    "cropBox": {
+      "left": 267,
+      "top": 57,
+      "right": 1033,
+      "bottom": 868
+    }
+  },
+  {
+    "page": 11,
+    "image": "output/ocr_page_previews/page_011.jpg",
+    "cropBox": {
+      "left": 350,
+      "top": 71,
+      "right": 1120,
+      "bottom": 862
+    }
+  },
+  {
+    "page": 12,
+    "image": "output/ocr_page_previews/page_012.jpg",
+    "cropBox": {
+      "left": 262,
+      "top": 46,
+      "right": 1039,
+      "bottom": 865
+    }
+  },
+  {
+    "page": 13,
+    "image": "output/ocr_page_previews/page_013.jpg",
+    "cropBox": {
+      "left": 315,
+      "top": 46,
+      "right": 1119,
+      "bottom": 864
+    }
+  },
+  {
+    "page": 14,
+    "image": "output/ocr_page_previews/page_014.jpg",
+    "cropBox": {
+      "left": 252,
+      "top": 42,
+      "right": 1039,
+      "bottom": 863
+    }
+  },
+  {
+    "page": 15,
+    "image": "output/ocr_page_previews/page_015.jpg",
+    "cropBox": {
+      "left": 304,
+      "top": 31,
+      "right": 1123,
+      "bottom": 869
+    }
+  },
+  {
+    "page": 16,
+    "image": "output/ocr_page_previews/page_016.jpg",
+    "cropBox": {
+      "left": 306,
+      "top": 44,
+      "right": 1035,
+      "bottom": 875
+    }
+  },
+  {
+    "page": 17,
+    "image": "output/ocr_page_previews/page_017.jpg",
+    "cropBox": {
+      "left": 48,
+      "top": 39,
+      "right": 1684,
+      "bottom": 864
+    }
+  },
+  {
+    "page": 18,
+    "image": "output/ocr_page_previews/page_018.jpg",
+    "cropBox": {
+      "left": 229,
+      "top": 68,
+      "right": 1042,
+      "bottom": 862
+    }
+  },
+  {
+    "page": 19,
+    "image": "output/ocr_page_previews/page_019.jpg",
+    "cropBox": {
+      "left": 303,
+      "top": 57,
+      "right": 1114,
+      "bottom": 863
+    }
+  },
+  {
+    "page": 20,
+    "image": "output/ocr_page_previews/page_020.jpg",
+    "cropBox": {
+      "left": 241,
+      "top": 63,
+      "right": 1037,
+      "bottom": 864
+    }
+  },
+  {
+    "page": 21,
+    "image": "output/ocr_page_previews/page_021.jpg",
+    "cropBox": {
+      "left": 315,
+      "top": 53,
+      "right": 1107,
+      "bottom": 866
+    }
+  },
+  {
+    "page": 22,
+    "image": "output/ocr_page_previews/page_022.jpg",
+    "cropBox": {
+      "left": 250,
+      "top": 71,
+      "right": 1029,
+      "bottom": 865
+    }
+  },
+  {
+    "page": 23,
+    "image": "output/ocr_page_previews/page_023.jpg",
+    "cropBox": {
+      "left": 328,
+      "top": 68,
+      "right": 1100,
+      "bottom": 861
+    }
+  },
+  {
+    "page": 24,
+    "image": "output/ocr_page_previews/page_024.jpg",
+    "cropBox": {
+      "left": 251,
+      "top": 64,
+      "right": 1040,
+      "bottom": 872
+    }
+  },
+  {
+    "page": 25,
+    "image": "output/ocr_page_previews/page_025.jpg",
+    "cropBox": {
+      "left": 322,
+      "top": 34,
+      "right": 1065,
+      "bottom": 866
+    }
+  },
+  {
+    "page": 26,
+    "image": "output/ocr_page_previews/page_026.jpg",
+    "cropBox": {
+      "left": 320,
+      "top": 34,
+      "right": 1037,
+      "bottom": 860
+    }
+  },
+  {
+    "page": 27,
+    "image": "output/ocr_page_previews/page_027.jpg",
+    "cropBox": {
+      "left": 303,
+      "top": 47,
+      "right": 1106,
+      "bottom": 872
+    }
+  },
+  {
+    "page": 28,
+    "image": "output/ocr_page_previews/page_028.jpg",
+    "cropBox": {
+      "left": 264,
+      "top": 59,
+      "right": 1030,
+      "bottom": 857
+    }
+  },
+  {
+    "page": 29,
+    "image": "output/ocr_page_previews/page_029.jpg",
+    "cropBox": {
+      "left": 203,
+      "top": 45,
+      "right": 1106,
+      "bottom": 859
+    }
+  },
+  {
+    "page": 30,
+    "image": "output/ocr_page_previews/page_030.jpg",
+    "cropBox": {
+      "left": 219,
+      "top": 60,
+      "right": 1030,
+      "bottom": 866
+    }
+  },
+  {
+    "page": 31,
+    "image": "output/ocr_page_previews/page_031.jpg",
+    "cropBox": {
+      "left": 349,
+      "top": 43,
+      "right": 1057,
+      "bottom": 881
+    }
+  },
+  {
+    "page": 32,
+    "image": "output/ocr_page_previews/page_032.jpg",
+    "cropBox": {
+      "left": 297,
+      "top": 50,
+      "right": 1022,
+      "bottom": 870
+    }
+  },
+  {
+    "page": 33,
+    "image": "output/ocr_page_previews/page_033.jpg",
+    "cropBox": {
+      "left": 929,
+      "top": 25,
+      "right": 1461,
+      "bottom": 874
+    }
+  },
+  {
+    "page": 34,
+    "image": "output/ocr_page_previews/page_034.jpg",
+    "cropBox": {
+      "left": 140,
+      "top": 100,
+      "right": 1051,
+      "bottom": 797
+    }
+  },
+  {
+    "page": 35,
+    "image": "output/ocr_page_previews/page_035.jpg",
+    "cropBox": {
+      "left": 184,
+      "top": 44,
+      "right": 1133,
+      "bottom": 865
+    }
+  },
+  {
+    "page": 36,
+    "image": "output/ocr_page_previews/page_036.jpg",
+    "cropBox": {
+      "left": 194,
+      "top": 67,
+      "right": 1048,
+      "bottom": 869
+    }
+  },
+  {
+    "page": 37,
+    "image": "output/ocr_page_previews/page_037.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 292,
+      "right": 1446,
+      "bottom": 854
+    }
+  },
+  {
+    "page": 38,
+    "image": "output/ocr_page_previews/page_038.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 299,
+      "right": 1472,
+      "bottom": 844
+    }
+  },
+  {
+    "page": 39,
+    "image": "output/ocr_page_previews/page_039.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 297,
+      "right": 1444,
+      "bottom": 852
+    }
+  },
+  {
+    "page": 40,
+    "image": "output/ocr_page_previews/page_040.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 290,
+      "right": 1445,
+      "bottom": 890
+    }
+  },
+  {
+    "page": 41,
+    "image": "output/ocr_page_previews/page_041.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 291,
+      "right": 1684,
+      "bottom": 889
+    }
+  },
+  {
+    "page": 42,
+    "image": "output/ocr_page_previews/page_042.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 283,
+      "right": 1433,
+      "bottom": 857
+    }
+  },
+  {
+    "page": 43,
+    "image": "output/ocr_page_previews/page_043.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 289,
+      "right": 1684,
+      "bottom": 848
+    }
+  },
+  {
+    "page": 44,
+    "image": "output/ocr_page_previews/page_044.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 305,
+      "right": 1445,
+      "bottom": 845
+    }
+  },
+  {
+    "page": 45,
+    "image": "output/ocr_page_previews/page_045.jpg",
+    "cropBox": {
+      "left": 4,
+      "top": 300,
+      "right": 1431,
+      "bottom": 844
+    }
+  },
+  {
+    "page": 46,
+    "image": "output/ocr_page_previews/page_046.jpg",
+    "cropBox": {
+      "left": 20,
+      "top": 311,
+      "right": 1432,
+      "bottom": 847
+    }
+  },
+  {
+    "page": 47,
+    "image": "output/ocr_page_previews/page_047.jpg",
+    "cropBox": {
+      "left": 15,
+      "top": 309,
+      "right": 1427,
+      "bottom": 847
+    }
+  },
+  {
+    "page": 48,
+    "image": "output/ocr_page_previews/page_048.jpg",
+    "cropBox": {
+      "left": 11,
+      "top": 315,
+      "right": 1427,
+      "bottom": 855
+    }
+  },
+  {
+    "page": 49,
+    "image": "output/ocr_page_previews/page_049.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 287,
+      "right": 1443,
+      "bottom": 849
+    }
+  },
+  {
+    "page": 50,
+    "image": "output/ocr_page_previews/page_050.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 299,
+      "right": 1429,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 51,
+    "image": "output/ocr_page_previews/page_051.jpg",
+    "cropBox": {
+      "left": 34,
+      "top": 297,
+      "right": 1423,
+      "bottom": 854
+    }
+  },
+  {
+    "page": 52,
+    "image": "output/ocr_page_previews/page_052.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 0,
+      "right": 1191,
+      "bottom": 1568
+    }
+  },
+  {
+    "page": 53,
+    "image": "output/ocr_page_previews/page_053.jpg",
+    "cropBox": {
+      "left": 2,
+      "top": 284,
+      "right": 1430,
+      "bottom": 859
+    }
+  },
+  {
+    "page": 54,
+    "image": "output/ocr_page_previews/page_054.jpg",
+    "cropBox": {
+      "left": 8,
+      "top": 257,
+      "right": 1432,
+      "bottom": 848
+    }
+  },
+  {
+    "page": 55,
+    "image": "output/ocr_page_previews/page_055.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 0,
+      "right": 1191,
+      "bottom": 1569
+    }
+  },
+  {
+    "page": 56,
+    "image": "output/ocr_page_previews/page_056.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 286,
+      "right": 1678,
+      "bottom": 897
+    }
+  },
+  {
+    "page": 57,
+    "image": "output/ocr_page_previews/page_057.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 286,
+      "right": 1441,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 58,
+    "image": "output/ocr_page_previews/page_058.jpg",
+    "cropBox": {
+      "left": 8,
+      "top": 285,
+      "right": 1447,
+      "bottom": 851
+    }
+  },
+  {
+    "page": 59,
+    "image": "output/ocr_page_previews/page_059.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 291,
+      "right": 1445,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 60,
+    "image": "output/ocr_page_previews/page_060.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 287,
+      "right": 1662,
+      "bottom": 855
+    }
+  },
+  {
+    "page": 61,
+    "image": "output/ocr_page_previews/page_061.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 306,
+      "right": 1440,
+      "bottom": 846
+    }
+  },
+  {
+    "page": 62,
+    "image": "output/ocr_page_previews/page_062.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 220,
+      "right": 1433,
+      "bottom": 851
+    }
+  },
+  {
+    "page": 63,
+    "image": "output/ocr_page_previews/page_063.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 303,
+      "right": 1676,
+      "bottom": 847
+    }
+  },
+  {
+    "page": 64,
+    "image": "output/ocr_page_previews/page_064.jpg",
+    "cropBox": {
+      "left": 4,
+      "top": 304,
+      "right": 1438,
+      "bottom": 843
+    }
+  },
+  {
+    "page": 65,
+    "image": "output/ocr_page_previews/page_065.jpg",
+    "cropBox": {
+      "left": 22,
+      "top": 303,
+      "right": 1436,
+      "bottom": 847
+    }
+  },
+  {
+    "page": 66,
+    "image": "output/ocr_page_previews/page_066.jpg",
+    "cropBox": {
+      "left": 21,
+      "top": 300,
+      "right": 1454,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 67,
+    "image": "output/ocr_page_previews/page_067.jpg",
+    "cropBox": {
+      "left": 26,
+      "top": 293,
+      "right": 1435,
+      "bottom": 849
+    }
+  },
+  {
+    "page": 68,
+    "image": "output/ocr_page_previews/page_068.jpg",
+    "cropBox": {
+      "left": 25,
+      "top": 286,
+      "right": 1677,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 69,
+    "image": "output/ocr_page_previews/page_069.jpg",
+    "cropBox": {
+      "left": 13,
+      "top": 301,
+      "right": 1437,
+      "bottom": 849
+    }
+  },
+  {
+    "page": 70,
+    "image": "output/ocr_page_previews/page_070.jpg",
+    "cropBox": {
+      "left": 19,
+      "top": 270,
+      "right": 1427,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 71,
+    "image": "output/ocr_page_previews/page_071.jpg",
+    "cropBox": {
+      "left": 55,
+      "top": 295,
+      "right": 1430,
+      "bottom": 848
+    }
+  },
+  {
+    "page": 72,
+    "image": "output/ocr_page_previews/page_072.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 0,
+      "right": 1191,
+      "bottom": 1572
+    }
+  },
+  {
+    "page": 73,
+    "image": "output/ocr_page_previews/page_073.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 274,
+      "right": 1664,
+      "bottom": 853
+    }
+  },
+  {
+    "page": 74,
+    "image": "output/ocr_page_previews/page_074.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 245,
+      "right": 1656,
+      "bottom": 863
+    }
+  },
+  {
+    "page": 75,
+    "image": "output/ocr_page_previews/page_075.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 246,
+      "right": 1671,
+      "bottom": 859
+    }
+  },
+  {
+    "page": 76,
+    "image": "output/ocr_page_previews/page_076.jpg",
+    "cropBox": {
+      "left": 25,
+      "top": 259,
+      "right": 1684,
+      "bottom": 868
+    }
+  },
+  {
+    "page": 77,
+    "image": "output/ocr_page_previews/page_077.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 245,
+      "right": 1637,
+      "bottom": 858
+    }
+  },
+  {
+    "page": 78,
+    "image": "output/ocr_page_previews/page_078.jpg",
+    "cropBox": {
+      "left": 46,
+      "top": 339,
+      "right": 1630,
+      "bottom": 850
+    }
+  },
+  {
+    "page": 79,
+    "image": "output/ocr_page_previews/page_079.jpg",
+    "cropBox": {
+      "left": 56,
+      "top": 346,
+      "right": 1624,
+      "bottom": 847
+    }
+  },
+  {
+    "page": 80,
+    "image": "output/ocr_page_previews/page_080.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 296,
+      "right": 1651,
+      "bottom": 852
+    }
+  },
+  {
+    "page": 81,
+    "image": "output/ocr_page_previews/page_081.jpg",
+    "cropBox": {
+      "left": 0,
+      "top": 296,
+      "right": 1661,
+      "bottom": 854
+    }
+  },
+  {
+    "page": 82,
+    "image": "output/ocr_page_previews/page_082.jpg",
+    "cropBox": {
+      "left": 57,
+      "top": 341,
+      "right": 1635,
+      "bottom": 842
+    }
+  }
+]
