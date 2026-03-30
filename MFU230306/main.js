@@ -97,12 +97,22 @@ async function loadAcupointMetadata() {
         const records = await response.json();
         if (!Array.isArray(records)) return;
 
+        // 建立页码映射，判断该页是否包含多个穴位条目
+        const pageCountMap = new Map();
+        records.forEach(r => {
+            if (r.page) {
+                pageCountMap.set(r.page, (pageCountMap.get(r.page) || 0) + 1);
+            }
+        });
+
         const byId = new Map(records.map((record) => [record.id, record]));
         Object.values(appData.acupoints).forEach((acu) => {
             const meta = byId.get(acu.id);
             if (!meta) return;
             if (meta.page) acu.page = meta.page;
             if (meta.order) acu.order = meta.order;
+            // 如果该页有超过一个条目且有 order，则记为需要裁剪的双页图
+            acu.isDoublePage = (pageCountMap.get(acu.page) > 1) && !!acu.order;
         });
     } catch (error) {
         console.warn('[MFU] 穴位页码元数据加载失败:', error);
@@ -758,10 +768,14 @@ function buildAcuItem(acu) {
     const therapist = acu.treatment?.therapist ? escapeHtml(acu.treatment.therapist) : emptyPlaceholder;
     const notes = acu.notes ? escapeHtml(acu.notes) : emptyPlaceholder;
     const previewUrl = getAcupointPreviewImageUrl(acu);
+    // 判断是否是双页图并添加对应样式类
+    const cropClass = (acu.isDoublePage && acu.order) ? `crop-order-${acu.order}` : '';
     const previewHtml = previewUrl
         ? `
             <div class="acu-preview">
-                <img class="acu-preview-image" src="${previewUrl}" alt="${escapeHtml(acu.mfu || acu.name || '穴位原图')}" loading="lazy">
+                <div class="acu-preview-window">
+                    <img class="acu-preview-image ${cropClass}" src="${previewUrl}" alt="${escapeHtml(acu.mfu || acu.name || '穴位原图')}" loading="lazy">
+                </div>
                 <a class="acu-preview-link" href="${previewUrl}" target="_blank" rel="noreferrer">打开原图</a>
             </div>
         `

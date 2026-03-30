@@ -1,53 +1,50 @@
 # MFU 人体筋膜与穴位交互式检索平台
 
-## 当前版本亮点
-- 左侧已升级为 **真实解剖 3D 模型**（Three.js + GLTFLoader）。
-- 默认仅显示 **肌肉系统模型**（已隐藏其他解剖系统）。
-- 支持模型交互：拖拽旋转、滚轮缩放、点击肌肉后右侧信息联动。
-- 已接入高精度人体解剖 GLB（在线加载，约 72MB）。
-- 已预置本地模型文件：`assets/models/anatomy-high.glb`（优先本地加载）。
-- 右侧保持筋膜/穴位检索、穴位卡片展开与搜索联动能力。
-- 已从 `PDF_筋膜手法辅助姿势调整.(1).pdf` 抽取 101 条穴位记录，并导出为 `output/acupoints_extracted.xlsx`。
-- 模型交互已按 9 个解剖区域分组：头面、颈项、胸肩、腹腰、骨盆髋、上臂、前臂手、大腿、小腿足。
+## 项目概述
+MFU 是一个基于 Web 的人体解剖与穴位双向联动检索工具。旨在通过直观的 **3D 肌肉系统模型** 与 **结构化穴位知识库** 的实时同步，为专业人士提供精准的定位参考。
 
-## 运行方式
+## 当前版本亮点
+- **三维可视化交互**：集成 Three.js + GLTFLoader 渲染的高精度肌肉模型，支持 360° 旋转、缩放与平移。
+- **双向联动系统**：
+  - **点击定位**：在左侧 3D 模型点击具体肌肉，右侧信息面板自动展开该部位的详细解剖数据及关联穴位。
+  - **搜索聚焦**：在右侧搜索框检索肌肉或穴位，3D 摄像机会自动漫游并聚焦至目标区域且施加高亮。
+- **高精度模型策略**：采用 `anatomy-high.glb` 模型，支持本地优先加载策略以保证极致的离线体验。
+- **自动化数据提取**：内置 Python 脚本，已从 PDF 文献中精准提取 100+ 条穴位与肌肉附着记录。
+
+## 运行方式 (本地环境)
 ```bash
-cd /Users/macbook/Documents/MFU
+cd /Users/macbook/Documents/code/vinstar1.github.io-hexo/source/MFU230306/
 python3 -m http.server 8090
 ```
-
 访问 [http://localhost:8090](http://localhost:8090)
 
-## 文件结构
+## 文件结构 (Project Tree)
 ```text
-MFU/
-├── index.html          # 页面结构（左3D视图 + 右侧信息面板）
-├── style.css           # UI 样式与3D容器样式
-├── main.js             # 3D渲染、模型加载、点击联动、搜索交互
-├── data.js             # 肌肉/穴位结构化数据（含 modelKeywords）
-├── PRD.md              # 产品需求文档
-├── IMG_4293.jpeg       # 参考图
-├── IMG_4294.jpeg       # 参考图
-└── muscle_anatomy.png  # 旧静态底图（当前版本不再作为主视图）
+MFU230306/
+├── index.html            # Web 页面主结构（自适应双栏布局）
+├── style.css             # UI/UX 样式（医疗科技感极简风格）
+├── main.js               # 核心逻辑（3D 渲染、模型拾取、搜索联动）
+├── data.js               # 结构化解剖数据中心（含 modelKeywords 映射）
+├── assets/
+│   ├── models/           # 肌肉系统 3D 模型库 (anatomy-high.glb)
+│   └── draco/            # 模型解压加速模块
+├── vendor/               # 第三方依赖库（Three.js 核心及常用组件）
+├── scripts/              # 自动化工具（PDF 解析、OCR 与穴位数据提取脚本）
+├── output/               # 脚本运行结果（包含导出的 Excel 数据）
+├── skills/               # 特化原子能力库
+└── PRD.md                # 完整产品需求规格说明书
 ```
 
 ## 模型说明
-- 模型格式：`GLB`
-- 本地模型：`/assets/models/anatomy-high.glb`
-- 本地 Three 核心模块：`/vendor/three/build/three.module.js`
-- 加载策略：优先本地模型，失败后再回退到 CDN 与 raw 地址
-- 来源：`thisisharshith/anatomy-viewer` 仓库公开模型  
-  `https://raw.githubusercontent.com/thisisharshith/anatomy-viewer/main/public/models/model.glb`
+- **模型格式**：`GLB` (带多层解剖元数据)
+- **核心组件**：基于本地 `vendor/three/build/three.module.js`
+- **加载策略**：优先尝试本地路径 `assets/models/anatomy-high.glb`；在资源缺失或网络不可达时，自动回退到 GitHub Raw 原始分发地址。
 
-## 交互说明
-- 点击模型肌肉后：
-  - 右侧自动显示对应肌肉与关联穴位
-  - 左侧模型会高亮目标肌肉
-  - 视角自动平滑聚焦目标区域
-- 若点击到尚未配置的肌肉，右侧会显示“该条目数据暂未录入”的占位说明。
-- 搜索肌肉/穴位后同样触发联动定位
+## 后续演进方向
+- **模型分块化**：将高频使用的区域（如颈项部、腰骶部）进行分块导出，提升首屏渲染速度。
+- **交互强化**：引入多视角预置位按钮（前、后、侧视图）一键快速对焦。
+- **离线增强**：部署 Service Worker 实现模型资源的 PWA 级缓存，提升二次加载体验。
 
-## 后续建议
-- 将高频肌肉部位导出为本地分层模型，减少首屏加载压力。
-- 增加前/后/侧预设视角按钮与重置视角按钮。
-- 引入模型离线缓存（Service Worker）提升弱网体验。
+## 数据来源与致谢
+- 模型来源：`thisisharshith/anatomy-viewer` 提供的公开人体模型分层数据。
+- 文献来源：根据《PDF_筋膜手法辅助姿势调整.(1).pdf》整理的临床穴位应用数据。
