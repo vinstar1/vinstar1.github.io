@@ -246,11 +246,7 @@ async function loadAnatomyModel() {
 
     buildMuscleNodeMap(root);
     hideLoading();
-    
-    // 生成全量穴位锚点
-    renderAllAcupointHotspots();
-    
-    showViewerStatus('已加载三维肌肉模型与全量 MFU 穴位。可自由旋转缩放，点击模型上的红点可查看该穴位详情。');
+    showViewerStatus('模型加载成功。点击肌肉区域可查看该部位穴位与治疗详情。');
 }
 
 async function createDracoLoader() {
@@ -771,9 +767,8 @@ function buildAcuItem(acu) {
     const previewUrl = getAcupointPreviewImageUrl(acu);
     const previewHtml = previewUrl
         ? `
-            <div class="acu-preview">
-                <img class="acu-preview-image" src="${previewUrl}" alt="${escapeHtml(acu.mfu || acu.name || '穴位原图')}" loading="lazy">
-                <a class="acu-preview-link" href="${previewUrl}" target="_blank" rel="noreferrer">打开原图</a>
+            <div class="acu-preview" onclick="openLightbox('${previewUrl}')">
+                <img class="acu-preview-image" src="${previewUrl}" alt="${escapeHtml(acu.name || '穴位原图')}" title="点击放大查看" loading="lazy">
             </div>
         `
         : '<div class="acu-preview-empty">当前穴位还没有对应的提取图片。</div>';
@@ -783,7 +778,6 @@ function buildAcuItem(acu) {
             <div class="acu-name-block">
                 <div class="acu-dot"></div>
                 <span class="acu-name">${escapeHtml(acu.name)}</span>
-                <span class="acu-mfu-tag">${escapeHtml(acu.mfu || '--')}</span>
             </div>
             <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"/>
@@ -840,47 +834,22 @@ function getAcupointPreviewImageUrl(acu) {
     return `${PREVIEW_IMAGE_ROOT}/${acu.id}.jpg`;
 }
 
-function renderAllAcupointHotspots() {
-    clearHotspots();
-    if (!viewer.hotspotLayer) return;
-
-    appData.muscles.forEach((muscle) => {
-        const nodes = viewer.muscleNodeMap.get(muscle.id) || [];
-        const acuIds = getMuscleAcupointIds(muscle);
-        if (!nodes.length || !acuIds.length) return;
-
-        const box = new THREE.Box3();
-        nodes.forEach((node) => box.expandByObject(node));
-        if (box.isEmpty()) return;
-
-        const hotspots = buildHotspotDescriptors(acuIds, box);
-        hotspots.forEach((hotspot) => {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'viewer-hotspot hidden';
-            button.innerHTML = `<span class="viewer-hotspot-label">${escapeHtml(hotspot.acu.mfu || hotspot.acu.name)}</span>`;
-            button.addEventListener('click', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                // 自动选择该肌肉面板，然后定位该穴位
-                selectMuscle(muscle.id);
-                setTimeout(() => activateAcupoint(hotspot.acu.id), 50);
-            });
-            viewer.hotspotLayer.appendChild(button);
-            viewer.hotspots.push({
-                acuId: hotspot.acu.id,
-                muscleId: muscle.id,
-                position: hotspot.position,
-                element: button
-            });
-        });
-    });
-
-    updateHotspotsLayout();
-    if (currentAcupointId) {
-        setActiveHotspot(currentAcupointId);
+// 灯箱功能
+window.openLightbox = function(url) {
+    let overlay = document.getElementById('lightbox-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'lightbox-overlay';
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = '<img src="" id="lightbox-img"><div class="lightbox-close">&times;</div>';
+        document.body.appendChild(overlay);
+        overlay.addEventListener('click', () => overlay.classList.remove('active'));
     }
-}
+    const img = document.getElementById('lightbox-img');
+    img.src = url;
+    overlay.classList.add('active');
+};
+
 
 function buildHotspotDescriptors(acuIds, box) {
     const clusterSizes = new Map();
