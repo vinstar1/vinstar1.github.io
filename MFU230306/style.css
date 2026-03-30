@@ -232,6 +232,22 @@ body {
     }
 }
 
+.loading-progress-container {
+    width: 240px;
+    height: 4px;
+    background: var(--accent-glow);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* 左上角视图控制标签 */
 .viewer-label {
     position: absolute;

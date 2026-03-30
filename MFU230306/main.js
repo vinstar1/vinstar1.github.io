@@ -146,6 +146,7 @@ function initViewer() {
     viewer.hotspotLayer = document.getElementById('viewer-hotspots');
     viewer.loadingEl = document.getElementById('viewer-loading');
     viewer.loadingTextEl = document.getElementById('viewer-loading-text');
+    viewer.progressBarEl = document.getElementById('loading-progress-bar');
     viewer.statusEl = document.getElementById('viewer-status');
 
     if (!viewer.container || !window.WebGLRenderingContext) {
@@ -275,14 +276,13 @@ function loadModel(loader, url) {
     return new Promise((resolve, reject) => {
         loader.load(
             url,
-            resolve,
-            (progressEvent) => {
-                if (!progressEvent || !progressEvent.total) {
-                    updateLoadingText('正在加载高精度解剖 3D 模型...');
-                    return;
-                }
-                const pct = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-                updateLoadingText(`正在加载高精度解剖 3D 模型... ${pct}%`);
+            (gltf) => resolve(gltf),
+            (xhr) => {
+                const total = xhr.total || 0;
+                const loaded = xhr.loaded || 0;
+                const percent = total > 0 ? Math.min(100, Math.round(loaded / total * 100)) : 0;
+                updateLoadingText(`正在加载高精度解剖 3D 模型... ${percent}%`);
+                updateLoadingProgress(percent);
             },
             reject
         );
@@ -616,7 +616,15 @@ function onResize() {
 }
 
 function updateLoadingText(text) {
-    if (viewer.loadingTextEl) viewer.loadingTextEl.textContent = text;
+    if (viewer.loadingTextEl) {
+        viewer.loadingTextEl.textContent = text;
+    }
+}
+
+function updateLoadingProgress(percent) {
+    if (viewer.progressBarEl) {
+        viewer.progressBarEl.style.width = `${percent}%`;
+    }
 }
 
 function hideLoading() {
