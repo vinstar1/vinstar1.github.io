@@ -688,6 +688,7 @@ function renderRightPanel(muscleId) {
     }
 
     document.getElementById('panel-content').scrollTop = 0;
+    renderAcupointHotspots(muscleId);
 }
 
 function renderSingleAcupointPanel(acuId) {

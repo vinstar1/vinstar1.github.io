@@ -59,9 +59,11 @@ def main():
                 segment_w = w / num_acus
                 left = i * segment_w
                 right = (i + 1) * segment_w
-                cropped = full_img.crop((int(left), 0, int(right), h))
+                # 裁剪侧边并裁掉底部 10% 的水印区域
+                cropped = full_img.crop((int(left), 0, int(right), int(h * 0.90)))
             else:
-                cropped = full_img
+                # 即使是单页也裁掉底部 10% 的水印区域
+                cropped = full_img.crop((0, 0, w, int(h * 0.90)))
             
             file_name = f"{acu_id}.jpg"
             out_path = OUT_DIR / file_name
