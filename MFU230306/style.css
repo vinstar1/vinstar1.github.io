@@ -574,34 +574,13 @@ body {
     margin-bottom: 14px;
 }
 
-/* 图片裁剪窗口：用于在大图中抠出单个穴位 */
-.acu-preview-window {
-    width: 100%;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: #f5f5f7;
-    position: relative;
-    display: flex;
-}
-
 .acu-preview-image {
     width: 100%;
     display: block;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #f5f5f7;
     transition: transform 0.3s ease;
-}
-
-/* 双页图裁剪逻辑：通过 object-fit 和比例控制只显示一半 */
-.acu-preview-image.crop-order-1 {
-    object-fit: cover;
-    object-position: left center;
-    aspect-ratio: 1.285 / 1;
-}
-
-.acu-preview-image.crop-order-2 {
-    object-fit: cover;
-    object-position: right center;
-    aspect-ratio: 1.285 / 1;
 }
 
 .acu-preview-link {
