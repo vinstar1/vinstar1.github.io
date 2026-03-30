@@ -246,7 +246,11 @@ async function loadAnatomyModel() {
 
     buildMuscleNodeMap(root);
     hideLoading();
-    showViewerStatus('已切换为肌肉系统模型。点击肌肉区域后会显示该区域穴位点位，点击红色点位可直接查看详情。');
+    
+    // 生成全量穴位锚点
+    renderAllAcupointHotspots();
+    
+    showViewerStatus('已加载三维肌肉模型与全量 MFU 穴位。可自由旋转缩放，点击模型上的红点可查看该穴位详情。');
 }
 
 async function createDracoLoader() {
@@ -688,13 +692,11 @@ function renderRightPanel(muscleId) {
     }
 
     document.getElementById('panel-content').scrollTop = 0;
-    renderAcupointHotspots(muscleId);
 }
 
 function renderSingleAcupointPanel(acuId) {
     const acu = appData.acupoints[acuId];
     if (!acu) return;
-    clearHotspots();
 
     document.getElementById('empty-state').style.display = 'none';
     const wrapper = document.getElementById('detail-wrapper');
@@ -838,39 +840,46 @@ function getAcupointPreviewImageUrl(acu) {
     return `${PREVIEW_IMAGE_ROOT}/${acu.id}.jpg`;
 }
 
-function renderAcupointHotspots(muscleId) {
-    const muscle = appData.muscles.find((item) => item.id === muscleId);
-    const nodes = viewer.muscleNodeMap.get(muscleId) || [];
-    const acuIds = getMuscleAcupointIds(muscle);
-
+function renderAllAcupointHotspots() {
     clearHotspots();
-    if (!viewer.hotspotLayer || !nodes.length || !acuIds.length) return;
+    if (!viewer.hotspotLayer) return;
 
-    const box = new THREE.Box3();
-    nodes.forEach((node) => box.expandByObject(node));
-    if (box.isEmpty()) return;
+    appData.muscles.forEach((muscle) => {
+        const nodes = viewer.muscleNodeMap.get(muscle.id) || [];
+        const acuIds = getMuscleAcupointIds(muscle);
+        if (!nodes.length || !acuIds.length) return;
 
-    const hotspots = buildHotspotDescriptors(acuIds, box);
-    hotspots.forEach((hotspot) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'viewer-hotspot hidden';
-        button.innerHTML = `<span class="viewer-hotspot-label">${escapeHtml(hotspot.acu.mfu || hotspot.acu.name)}</span>`;
-        button.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            activateAcupoint(hotspot.acu.id);
-        });
-        viewer.hotspotLayer.appendChild(button);
-        viewer.hotspots.push({
-            acuId: hotspot.acu.id,
-            position: hotspot.position,
-            element: button
+        const box = new THREE.Box3();
+        nodes.forEach((node) => box.expandByObject(node));
+        if (box.isEmpty()) return;
+
+        const hotspots = buildHotspotDescriptors(acuIds, box);
+        hotspots.forEach((hotspot) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'viewer-hotspot hidden';
+            button.innerHTML = `<span class="viewer-hotspot-label">${escapeHtml(hotspot.acu.mfu || hotspot.acu.name)}</span>`;
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                // 自动选择该肌肉面板，然后定位该穴位
+                selectMuscle(muscle.id);
+                setTimeout(() => activateAcupoint(hotspot.acu.id), 50);
+            });
+            viewer.hotspotLayer.appendChild(button);
+            viewer.hotspots.push({
+                acuId: hotspot.acu.id,
+                muscleId: muscle.id,
+                position: hotspot.position,
+                element: button
+            });
         });
     });
 
     updateHotspotsLayout();
-    setActiveHotspot(currentAcupointId);
+    if (currentAcupointId) {
+        setActiveHotspot(currentAcupointId);
+    }
 }
 
 function buildHotspotDescriptors(acuIds, box) {
