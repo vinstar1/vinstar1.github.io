@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特斯拉 Model 3 财务测算工具</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --panel-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --success-color: #10b981;
+            --danger-color: #f43f5e;
+            --tesla-red: #e82127;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(232, 33, 39, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 2rem;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Input Section */
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .input-section::-webkit-scrollbar {
+            width: 6px;
+        }
+        .input-section::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+
+        .input-group {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .input-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-row label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .form-row input {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-row input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Results Section */
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .summary-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .val-positive { color: var(--success-color); }
+        .val-negative { color: var(--danger-color); }
+
+        .chart-container {
+            height: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .input-section {
+                max-height: none;
+                overflow-y: visible;
+            }
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Model 3 换车财务测算工具</h1>
+            <p>基于 5 年现金流分析的换车决策助手</p>
+        </header>
+
+        <aside class="glass-panel input-section" id="inputs-panel">
+            <div class="input-group">
+                <h3>🚙 旧车相关</h3>
+                <div class="form-row">
+                    <label>旧车当前残值 (元)</label>
+                    <input type="number" id="old_car_value" value="170000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>旧车 5 年后残值 (元)</label>
+                    <input type="number" id="old_car_future_value" value="120000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>油车年保费 (元)</label>
+                    <input type="number" id="old_car_insurance" value="3500" step="100">
+                </div>
+                <div class="form-row">
+                    <label>油车前三年保养费 (元/年)</label>
+                    <input type="number" id="old_car_maint_1_3" value="0" step="100">
+                </div>
+                <div class="form-row">
+                    <label>油车后两年保养费 (元/年)</label>
+                    <input type="number" id="old_car_maint_4_5" value="2500" step="100">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <h3>⚡ 新车相关 (Model 3)</h3>
+                <div class="form-row">
+                    <label>新车指导价 (元)</label>
+                    <input type="number" id="new_car_price" value="235500" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>新车 5 年后残值 (元)</label>
+                    <input type="number" id="new_car_future_value" value="95000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>置换补贴 (元)</label>
+                    <input type="number" id="trade_in_subsidy" value="15000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>官方保险补贴 (元)</label>
+                    <input type="number" id="insurance_subsidy" value="8000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>新车首年保险费 (元)</label>
+                    <input type="number" id="new_car_insurance_1" value="8000" step="100">
+                </div>
+                <div class="form-row">
+                    <label>新车后 4 年保险费 (元/年)</label>
+                    <input type="number" id="new_car_insurance_2_5" value="5000" step="100">
+                </div>
+                <div class="form-row">
+                    <label>购置税税率 (小数)</label>
+                    <input type="number" id="purchase_tax_rate" value="0.05" step="0.01">
+                </div>
+                <div class="form-row">
+                    <label>上牌杂费 (元)</label>
+                    <input type="number" id="plate_fee" value="300" step="100">
+                </div>
+                <div class="form-row">
+                    <label>方案首付金额 (元)</label>
+                    <input type="number" id="down_payment" value="79900" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>电车前三年保养费 (元/年)</label>
+                    <input type="number" id="ev_maint_1_3" value="500" step="100">
+                </div>
+                <div class="form-row">
+                    <label>电车后两年保养费 (元/年)</label>
+                    <input type="number" id="ev_maint_4_5" value="1500" step="100">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <h3>🛣️ 通用参数 (能耗与理财)</h3>
+                <div class="form-row">
+                    <label>年行驶里程 (公里)</label>
+                    <input type="number" id="annual_mileage" value="20000" step="1000">
+                </div>
+                <div class="form-row">
+                    <label>油车百公里油耗 (L)</label>
+                    <input type="number" id="fuel_consumption" value="8" step="0.5">
+                </div>
+                <div class="form-row">
+                    <label>油价 (元/L)</label>
+                    <input type="number" id="fuel_price" value="8" step="0.1">
+                </div>
+                <div class="form-row">
+                    <label>电车百公里电耗 (kWh)</label>
+                    <input type="number" id="ev_consumption" value="12.5" step="0.5">
+                </div>
+                <div class="form-row">
+                    <label>电价 (元/kWh)</label>
+                    <input type="number" id="ev_price" value="1.07" step="0.1">
+                </div>
+                <div class="form-row">
+                    <label>理财年化利率 (小数)</label>
+                    <input type="number" id="investment_rate" value="0.03" step="0.005">
+                </div>
+            </div>
+        </aside>
+
+        <main class="results-section">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <p>方案一：维持旧车 5 年末财务净值</p>
+                    <h2 id="res-val1">0</h2>
+                </div>
+                <div class="summary-card">
+                    <p>方案二：置换电车 5 年末财务净值 (首日理财)</p>
+                    <h2 id="res-val2">0</h2>
+                </div>
+                <div class="summary-card" style="background: rgba(56, 189, 248, 0.1); border-color: var(--accent-color);">
+                    <p>换车差异 (方案二 - 方案一)</p>
+                    <h2 id="res-diff">0</h2>
+                    <p id="res-conclusion" style="margin-top:0.5rem; font-weight:500;"></p>
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h3 style="margin-bottom: 1rem; color: var(--text-main);">📊 5 年现金流对比走势图</h3>
+                <div class="chart-container">
+                    <canvas id="cashflowChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h3 style="margin-bottom: 1rem; color: var(--text-main);">📑 详细现金流测算表</h3>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>年限阶段</th>
+                                <th>方案一：维持旧车</th>
+                                <th>方案二：置换 Model 3</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- JS injected -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Formatting function
+        const formatCurrency = (val) => new Intl.NumberFormat('zh-CN', { style: 'currency', currency: 'CNY', maximumFractionDigits: 0 }).format(val);
+
+        let myChart = null;
+
+        function getVal(id) {
+            return parseFloat(document.getElementById(id).value) || 0;
+        }
+
+        function calculate() {
+            // Inputs
+            const oldCarVal = getVal('old_car_value');
+            const oldCarFutureVal = getVal('old_car_future_value');
+            const newCarPrice = getVal('new_car_price');
+            const newCarFutureVal = getVal('new_car_future_value');
+            const tradeInSubsidy = getVal('trade_in_subsidy');
+            const insSubsidy = getVal('insurance_subsidy');
+            const newCarIns1 = getVal('new_car_insurance_1');
+            const newCarIns2_5 = getVal('new_car_insurance_2_5');
+            const taxRate = getVal('purchase_tax_rate');
+            const plateFee = getVal('plate_fee');
+            const downPayment = getVal('down_payment');
+            
+            const mileage = getVal('annual_mileage');
+            const fuelCons = getVal('fuel_consumption');
+            const fuelPrice = getVal('fuel_price');
+            const oldIns = getVal('old_car_insurance');
+            const oldMaint1_3 = getVal('old_car_maint_1_3');
+            const oldMaint4_5 = getVal('old_car_maint_4_5');
+            
+            const evCons = getVal('ev_consumption');
+            const evPrice = getVal('ev_price');
+            const evMaint1_3 = getVal('ev_maint_1_3');
+            const evMaint4_5 = getVal('ev_maint_4_5');
+            const investRate = getVal('investment_rate');
+
+            // --- Scheme 1: Keep Old Car ---
+            let scheme1 = [0, 0, 0, 0, 0, 0, 0, 0]; 
+            // Indices: 0:Year0, 1:Year1, ..., 5:Year5, 6:End, 7:With Invest
+            scheme1[0] = 0; // Year 0
+            
+            let fuelCostPerYear = (fuelCons / 100) * mileage * fuelPrice;
+            
+            scheme1[1] = scheme1[0] - (fuelCostPerYear + oldIns + oldMaint1_3);
+            scheme1[2] = scheme1[1] - (fuelCostPerYear + oldIns + oldMaint1_3);
+            scheme1[3] = scheme1[2] - (fuelCostPerYear + oldIns + oldMaint1_3);
+            scheme1[4] = scheme1[3] - (fuelCostPerYear + oldIns + oldMaint4_5);
+            scheme1[5] = scheme1[4] - (fuelCostPerYear + oldIns + oldMaint4_5);
+            
+            scheme1[6] = scheme1[5] + oldCarFutureVal; // Sell car
+            scheme1[7] = scheme1[6]; // No initial investment
+
+            // --- Scheme 2: Trade-in for Model 3 ---
+            let scheme2 = [0, 0, 0, 0, 0, 0, 0, 0];
+            
+            let evCostPerYear = (evCons / 100) * mileage * evPrice;
+            let loanRepaymentYearly = (newCarPrice - downPayment) / 5;
+            let taxAmt = (newCarPrice / 1.13) * taxRate;
+            
+            // Year 0
+            scheme2[0] = oldCarVal + tradeInSubsidy - downPayment - taxAmt - plateFee - (newCarIns1 - insSubsidy);
+            
+            scheme2[1] = scheme2[0] - (loanRepaymentYearly + evCostPerYear + evMaint1_3);
+            scheme2[2] = scheme2[1] - (loanRepaymentYearly + evCostPerYear + evMaint1_3 + newCarIns2_5);
+            scheme2[3] = scheme2[2] - (loanRepaymentYearly + evCostPerYear + evMaint1_3 + newCarIns2_5);
+            scheme2[4] = scheme2[3] - (loanRepaymentYearly + evCostPerYear + evMaint4_5 + newCarIns2_5);
+            scheme2[5] = scheme2[4] - (loanRepaymentYearly + evCostPerYear + evMaint4_5 + newCarIns2_5);
+            
+            scheme2[6] = scheme2[5] + newCarFutureVal; // Sell car
+            
+            let investInterest = scheme2[0] * (Math.pow(1 + investRate, 5) - 1);
+            scheme2[7] = scheme2[6] + investInterest;
+
+            // --- Update UI ---
+            updateUI(scheme1, scheme2);
+        }
+
+        function updateUI(s1, s2) {
+            // Update Summary Cards
+            document.getElementById('res-val1').textContent = formatCurrency(s1[7]);
+            document.getElementById('res-val2').textContent = formatCurrency(s2[7]);
+            
+            let diff = s2[7] - s1[7];
+            let diffEl = document.getElementById('res-diff');
+            let concEl = document.getElementById('res-conclusion');
+            
+            diffEl.textContent = (diff > 0 ? '+' : '') + formatCurrency(diff);
+            
+            if (diff > 0) {
+                diffEl.className = 'val-positive';
+                concEl.textContent = '置换方案更划算，5年多节约这笔钱！';
+                concEl.style.color = 'var(--success-color)';
+            } else {
+                diffEl.className = 'val-negative';
+                concEl.textContent = '维持旧车更省钱。';
+                concEl.style.color = 'var(--danger-color)';
+            }
+
+            // Update Table
+            const labels = [
+                '第 0 年 (提车当天)', '第 1 年末', '第 2 年末', '第 3 年末', 
+                '第 4 年末', '第 5 年末 (卖车前)', '第 5 年末 (最终变现后)', '第 5 年末 (考虑首日理财后)'
+            ];
+            
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+            for(let i=0; i<8; i++) {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="text-align: left;">${labels[i]}</td>
+                    <td style="color: ${s1[i] >= 0 ? '#10b981' : '#f43f5e'}">${formatCurrency(s1[i])}</td>
+                    <td style="color: ${s2[i] >= 0 ? '#10b981' : '#f43f5e'}">${formatCurrency(s2[i])}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+
+            // Update Chart
+            updateChart(s1, s2);
+        }
+
+        function updateChart(s1, s2) {
+            const ctx = document.getElementById('cashflowChart').getContext('2d');
+            
+            // Limit chart to 6 data points (Year 0 to 5 before sell, then final value)
+            const labels = ['第 0 年', '第 1 年末', '第 2 年末', '第 3 年末', '第 4 年末', '第 5 年(变现&理财后)'];
+            const data1 = [s1[0], s1[1], s1[2], s1[3], s1[4], s1[7]];
+            const data2 = [s2[0], s2[1], s2[2], s2[3], s2[4], s2[7]];
+
+            if (myChart) {
+                myChart.data.datasets[0].data = data1;
+                myChart.data.datasets[1].data = data2;
+                myChart.update();
+            } else {
+                Chart.defaults.color = '#94a3b8';
+                myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: '方案一：维持旧车 (元)',
+                                data: data1,
+                                borderColor: '#94a3b8',
+                                backgroundColor: 'rgba(148, 163, 184, 0.1)',
+                                borderWidth: 3,
+                                fill: true,
+                                tension: 0.4
+                            },
+                            {
+                                label: '方案二：置换 Model 3 (元)',
+                                data: data2,
+                                borderColor: '#38bdf8',
+                                backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                                borderWidth: 3,
+                                fill: true,
+                                tension: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += formatCurrency(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: {
+                                    color: 'rgba(255,255,255,0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(255,255,255,0.05)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Add event listeners to all inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Initial calculation
+        window.onload = calculate;
+    </script>
+</body>
+</html>
